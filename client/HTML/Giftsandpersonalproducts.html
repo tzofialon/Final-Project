@@ -1,0 +1,156 @@
+<html>
+
+<head>
+    <title>TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Giftsandpersonalproducts">
+    <header>
+        <h1>Gifts and personal products</h1>
+        <h2 id="welcome-user"></h2>
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"  style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+        <button onclick="logout()">Logout</button>
+        <a href="home.html">
+            <button>back</button>
+        </a>
+       
+        <a href="login.html">
+            <button>Login</button>
+          </a>
+    </header>
+    <main>
+
+        <div class="filters">
+            <h2>Filters</h2>
+        
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number" id="price-min" placeholder="minimum">
+                <label for="price-max">max price</label>
+                <input type="number" id="price-max" placeholder="maximum">
+            </div>
+            
+            <button onclick="filterCars()">get filter</button>
+
+        </div>
+
+
+        <div id="car-list" class="car-gallery">
+            <div class="car-item">
+                <img src="images/Gifts and personal products/calendar.jpg">
+                <h3>Calendar</h3>
+                <p>A modern calendar that includes special dates for the tech community, like Pai Day, with tech-inspired graphic designs.</p>
+                <p>price: 190 ₪</p>
+                
+                <span id="inventory_43"></span>
+            </br>
+                <button onclick="addToCart(43, 'Calendar', 190,'images/Gifts and personal products/calendar.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/giftbox.jpg">
+                <h3>Gift box</h3>
+                <p>A gift box with the inscription "For the Best Developer" in an elegant and modern design, which includes technological items inside</p>
+                <p>price: 690 ₪</p>
+             
+                <span id="inventory_44"></span>
+            </br>
+                <button onclick="addToCart(44, 'Gift box', 690,'images/Gifts and personal products/giftbox.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/Personalkeychain.jpg">
+                <h3>Personal key ring</h3>
+                <p>A personal key ring with a QR engraving that leads to a hidden message, in a modern, technologically inspired metallic design</p>
+                <p>price: 280 ₪</p>
+               
+                <span id="inventory_45"></span>
+            </br>
+                <button onclick="addToCart(45, 'Personal key ring', 280,'images/Gifts and personal products/Personalkeychain.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/Pillowset.jpg">
+                <h3>Set pillows</h3>
+                <p>A set of decorative pillows with funny tech phrases, like "Debugging is My Cardio," and code-inspired patterns</p>
+                <p>price: 610 ₪</p>
+               
+                <span id="inventory_46"></span>
+            </br>
+                <button onclick="addToCart(46, 'Set pillows', 610,'images/Gifts and personal products/Pillowset.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/Setofscreenprotectors.jpg">
+                <h3>Set of phone screen protectors</h3>
+                <p>A set of phone screen protectors with custom designs, such as electrical circuit patterns or binary code</p>
+                <p>price: 250 ₪</p>
+             
+                <span id="inventory_47"></span>
+            </br>
+                <button onclick="addToCart(47, 'Set of phone screen protectors', 250,'images/Gifts and personal products/Setofscreenprotectors.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/setofwallstickers.jpg">
+                <h3>Set of wall stickers</h3>
+                <p>A set of wall stickers with technological motifs such as examples of electric circuits and binary code, in a modern and colorful design</p>
+                <p>price: 50 ₪</p>
+                
+                <span id="inventory_48"></span>
+            </br>
+                <button onclick="addToCart(48, 'Set of wall stickers', 50,'images/Gifts and personal products/setofwallstickers.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/smartB.jpg">
+                <h3>Insulated water bottle</h3>
+                <p>Insulated water bottle with a digital temperature display on the lid, in a metallic and modern design</p>
+                <p>price: 270 ₪</p>
+             
+                <span id="inventory_49"></span>
+            </br>
+                <button onclick="addToCart(49, 'Insulated water bottle', 270,'images/Gifts and personal products/smartB.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/Smartcoffeemug.jpg">
+                <h3>Smart coffee mug</h3>
+                <p>A smart coffee mug with a built-in temperature control system, in a modern design with a digital display</p>
+                <p>price: 180 ₪</p>
+           
+                <span id="inventory_50"></span>
+            </br>
+                <button onclick="addToCart(50, 'Smart coffee mug', 180,'images/Gifts and personal products/Smartcoffeemug.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Gifts and personal products/Smartnotebook.jpg">
+                <h3>Smart notebook</h3>
+                <p>A smart notebook for multiple use with an erasing function, in a modern, technologically inspired design. The notebook includes a smart pen for digital storage</p>
+                <p>price: 780 ₪</p>
+                <span id="inventory_51"></span>
+            </br>
+                <button onclick="addToCart(51, 'Smart notebook', 780,'images/Gifts and personal products/Smartnotebook.jpg')">add to cart</button>
+            </div>
+
+
+        </div>
+
+    </main>
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+      </footer>
+    <script src="javaAll.js"></script>
+</body>
+
+</html>
+

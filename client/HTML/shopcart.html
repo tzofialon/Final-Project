@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>TechGeek</title>
+        <link rel="stylesheet" href="paycss.css">
+    </head>
+    
+
+    <body>
+      
+        <header>
+            <h1>your shopping cart</h1>
+            <h2 id="welcome-user"></h2>
+            <button onclick="logout()">Logout</button>
+            <a href="home.html">
+                <button>back</button>
+            </a>
+           
+            <a href="login.html">
+                <button>Login</button>
+              </a>
+        </header>
+    
+<main>
+    <div id="cartTableD">
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>picture</th>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>Quantity</th>
+                    <th>total</th>
+                    <th>remove</th>
+                </tr>
+            </thead>
+            <tbody id="cartItems">
+            
+            </tbody>
+        </table>
+    </div>
+    <div id="TotalPrice">
+        <h2> Total-amount <span id="totalPrice">₪0</span></h2>
+        <a href="propay.html">
+            <button>for payment</button>
+        </a>
+    </div>
+</main>
+<footer class="footer">
+    <p>© 2024 TechGeek. All rights reserved.</p>
+  </footer>
+<script src="javaAll.js"></script>
+    </body>
+</html>

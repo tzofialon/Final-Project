@@ -1,0 +1,179 @@
+<html>
+
+
+<head>
+    <title>TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Technologicalfashion">
+    <header>
+        <h1>Technological fashion</h1>
+        <h2 id="welcome-user"></h2>
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"  style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+        <button onclick="logout()">Logout</button>
+        <a href="home.html">
+            <button>back</button>
+        </a>
+        
+        <a href="login.html">
+            <button>Login</button>
+          </a>
+    </header>
+    <main>
+
+        <div class="filters">
+            <h2>Filters</h2>
+        
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number" id="price-min" placeholder="minimum">
+                <label for="price-max">max price</label>
+                <input type="number" id="price-max" placeholder="maximum">
+            </div>
+            
+            <button onclick="filterCars()">get filter</button>
+
+        </div>
+
+
+        <div id="car-list" class="car-gallery">
+            <div class="car-item">
+                <img src="images/Technological fashion/baseballcap.jpg">
+                <h3>Baseball cap</h3>
+                <p>The baseball cap with a pattern of electric circuits</p>
+                <p>price: 120 ₪</p>
+                
+                <span id="inventory_1"></span>
+            </br>
+                <button onclick="addToCart(1, 'baseball cap', 120,'images/Technological fashion/baseballcap.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/Bomberjacket.jpg">
+                <h3>Technological bomber jacket</h3>
+                <p>A technological bomber jacket with a design of glowing electric circuits on the sleeves</p>
+                <p>price: 360 ₪</p>
+
+                <span id="inventory_2"></span>
+            </br>
+                <button onclick="addToCart(2, 'Technological bomber jacket', 360,'images/Technological fashion/Bomberjacket.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/hoodie.jpg">
+                <h3>Hoodie</h3>
+                <p>Hoodie with the inscription "404: Sleep Not Found"</p>
+                <p>price: 450 ₪</p>
+        
+                <span id="inventory_3"></span>
+            </br>
+                <button onclick="addToCart(3, 'Hoodie', 450,'images/Technological fashion/hoodie.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/jacket.jpg">
+                <h3>Jacket</h3>
+                <p>Jacket with the inscription "Always in Beta"</p>
+                <p>price: 370 ₪</p>
+              
+                <span id="inventory_4"></span>
+            </br>
+                <button onclick="addToCart(4, 'Jacket', 370,'images/Technological fashion/jacket.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/longt-shirt.jpg">
+                <h3>Long t-shirt</h3>
+                <p>Long t-shirt with the inscription "I Code", in a modern design with subtle technological patterns on the sleeves and a pleasant color combination.</p>
+                <p>price: 230 ₪</p>
+            
+                <span id="inventory_5"></span>
+            </br>
+                <button onclick="addToCart(5, 'Long t-shirt', 230, 'images/Technological fashion/longt-shirt.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/polo.jpg">
+                <h3>Polo shirt</h3>
+                <p>Polo shirt with a logo of a small computer chip embroidered on the chest, in vivid and modern colors.</p>
+                <p>price: 360 ₪</p>
+            
+                <span id="inventory_6"></span>
+            </br>
+                <button onclick="addToCart(6, 'Polo shirt', 360,'images/Technological fashion/polo.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/scarf.jpg">
+                <h3>Winter scarf</h3>
+                <p>A winter scarf, with prints of code and electric circuits in warm colors like dark blue and burgundy, and in a thick and cozy design suitable for cold weather</p>
+                <p>price: 420 ₪</p>
+           
+                <span id="inventory_7"></span>
+            </br>
+                <button onclick="addToCart(7, 'Winter scarf', 420,'images/Technological fashion/scarf.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Technological fashion/Socks.jpg">
+                <h3>Socks</h3>
+                <p>Colorful socks with designs of keyboards and technological components.</p>
+                <p>price: 90 ₪</p>
+             
+                <span id="inventory_8"></span>
+            </br>
+                <button onclick="addToCart(8, 'Socks', 90,'images/Technological fashion/Socks.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Technological fashion/Sweatpants.jpg">
+                <h3>Sweatpants</h3>
+                <p>The sweatpants with binary code decoration on the sides.</p>
+                <p>price: 160 ₪</p>
+         
+                <span id="inventory_9"></span>
+            </br>
+                <button onclick="addToCart(9, 'Sweatpants', 160,'images/Technological fashion/Sweatpants.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Technological fashion/T-shirt.jpg">
+                <h3>T-shirt</h3>
+                <p>T-shirt with the inscription "Eat, Sleep, Code, Repeat"</p>
+                <p>price: 230 ₪</p>
+            
+                <span id="inventory_10"></span>
+            </br>
+                <button onclick="addToCart(10, 'T-shirt', 230, 'images/Technological fashion/T-shirt.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Technological fashion/Tsh3.jpg">
+                <h3>Black t-shirt</h3>
+                <p>Black t-shirt with the inscription "I Write Code, Not Excuses" and a design that includes a keyboard and small pieces of code</p>
+                <p>price: 250 ₪</p>
+               
+                <span id="inventory_11"></span>
+            </br>
+                <button onclick="addToCart(11, 'Black t-shirt', 250,'images/Technological fashion/Tsh3.jpg')">add to cart</button>
+            </div>
+
+        </div>
+
+    </main>
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+      </footer>
+    <script src="javaAll.js"></script>
+</body>
+
+</html>

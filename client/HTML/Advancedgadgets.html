@@ -1,0 +1,160 @@
+<html>
+
+<head>
+    <title>TechGeek</title>
+   
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Advanced gadgets">
+    <header>
+        <h1>Advanced gadgets</h1>
+        <h2 id="welcome-user"></h2>
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"  style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+        <button onclick="logout()">Logout</button>
+        <a href="home.html">
+            <button>back</button>
+        </a>
+       
+        <a href="login.html">
+            <button>Login</button>
+          </a>
+    </header>
+    <main>
+
+        <div class="filters">
+            <h2>Filters</h2>
+        
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number" id="price-min" placeholder="minimum">
+                <label for="price-max">max price</label>
+                <input type="number" id="price-max" placeholder="maximum">
+            </div>
+            
+            <button onclick="filterCars()">get filter</button>
+
+        </div>
+
+
+        <div id="car-list" class="car-gallery">
+            <div class="car-item">
+                <img src="images/Advanced gadgets/Bluetooth.jpg">
+                <h3>Bluetooth adapter</h3>
+                <p>A small Bluetooth adapter with a modern design intended for old devices such as televisions, with LED lighting and a metallic finish</p>
+                <p>price: 350 ₪</p>
+                <span id="inventory_33"></span>
+            </br>
+                <button onclick="addToCart(33, 'Bluetooth adapter', 350,'images/Advanced gadgets/Bluetooth.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/Ergonomicmouse.jpg">
+                <h3>Ergonomic mouse2</h3>
+                <p>Ergonomic mouse with buttons adapted to games, in a futuristic design with glowing LED lighting</p>
+                <p>price: 370 ₪</p>
+                <span id="inventory_34"></span>
+            </br>
+                <button onclick="addToCart(34, 'Ergonomic mouse2', 370,'images/Advanced gadgets/Ergonomicmouse.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/LED.jpg">
+                <h3>Smart LED lamp</h3>
+                <p>A smart LED lamp in the design of electric circuits, with adjustable lighting in different colors and control via touch or an app</p>
+                <p>price: 440 ₪</p>
+                <span id="inventory_35"></span>
+            </br>
+                <button onclick="addToCart(35, 'Smart LED lamp', 440,'images/Advanced gadgets/LED.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/Mechanicalkeyboard.jpg">
+                <h3>Mechanical keyboard</h3>
+                <p>A small mechanical keyboard with a unique design inspired by binary code, with custom RGB lighting and a futuristic look.</p>
+                <p>price: 560 ₪</p>
+                <span id="inventory_36"></span>
+            </br>
+                <button onclick="addToCart(36, 'Mechanical keyboard', 560,'images/Advanced gadgets/Mechanicalkeyboard.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/smartpen.jpg">
+                <h3>Smart pen</h3>
+                <p>A smart pen with advanced functions such as automatic translation and erasing digital handwriting, in a modern design with bright LEDs</p>
+                <p>price: 370 ₪</p>
+                <span id="inventory_37"></span>
+            </br>
+                <button onclick="addToCart(37, 'Smart pen', 370,'images/Advanced gadgets/smartpen.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/Smartspeaker.jpg">
+                <h3>Smart speaker</h3>
+                <p>A small smart speaker in the design of a computer chip, with examples of electric circuits and glowing LED lighting</p>
+                <p>price: 530 ₪</p>
+                <span id="inventory_38"></span>
+            </br>
+                <button onclick="addToCart(38, 'Smart speaker', 530,'images/Advanced gadgets/Smartspeaker.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/smartwatch.jpg">
+                <h3>Smart watch</h3>
+                <p>A smart watch with a customized interface for programming and task management, in a modern and technological design.</p>
+                <p>price: 670 ₪</p>
+                <span id="inventory_39"></span>
+            </br>
+                <button onclick="addToCart(39, 'Smart watch', 670,'images/Advanced gadgets/smartwatch.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/thewirelesscharger.jpg">
+                <h3>Wireless charger</h3>
+                <p>The wireless charger with RGB lighting in the design of electric circuits</p>
+                <p>price: 490 ₪</p>
+                <span id="inventory_40"></span>
+            </br>
+                <button onclick="addToCart(40, 'Wireless charger', 490,'images/Advanced gadgets/thewirelesscharger.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/webcam.jpg">
+                <h3>Webcam</h3>
+                <p>The webcam with a custom frame that can be printed in 3D, in a compact and modern design.</p>
+                <p>price: 620 ₪</p>
+                <span id="inventory_41"></span>
+            </br>
+                <button onclick="addToCart(41, 'Webcam', 620,'images/Advanced gadgets/webcam.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Advanced gadgets/Wirelessheadphones.jpg">
+                <h3>Wireless headphones</h3>
+                <p>Wireless headphones in a technological design with glowing LED lighting and a futuristic look</p>
+                <p>price: 350 ₪</p>
+                <span id="inventory_42"></span>
+            </br>
+                <button onclick="addToCart(42, 'Wireless headphones', 350,'images/Advanced gadgets/Wirelessheadphones.jpg')">add to cart</button>
+            </div>
+
+
+        </div>
+
+    </main>
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+      </footer>
+    <script src="javaAll.js"></script>
+</body>
+
+</html>
+

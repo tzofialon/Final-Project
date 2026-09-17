@@ -1,0 +1,690 @@
+
+/* עיצוב גוף הדף */
+
+body {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460); /* מעבר צבעים הדרגתי */
+    background-size: 400% 400%; /* גורם לרקע לזוז */
+    animation: gradientBG 8s ease infinite; /* אנימציית מעבר צבעים */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF; /* טקסט לבן */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* אנימציה של מעבר צבעים */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+/* עיצוב כותרת */
+header {
+    background-color: #0078D4;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* עיצוב תוכן מרכזי */
+main {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* עיצוב גלריית מוצרים */
+.car-gallery,
+.car-list1 {
+    display: flex;
+    flex-wrap: wrap; /* מאפשר מעבר לשורה חדשה */
+    gap: 20px; /* רווח בין האלמנטים */
+    justify-content: center; /* מרכז את האלמנטים */
+    align-items: flex-start; /* מיישר את האלמנטים לראש השורה */
+}
+
+
+/* עיצוב פריטים בתוך הגלריה */
+.car-item,
+.car-itemr {
+    flex: 1 1 calc(30% - 20px); /* הקטנת רוחב הפריטים כדי שיתאימו לשלוש בשורה */
+    max-width: 250px; /* הגבלת רוחב מקסימלית */
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    
+}
+
+.car-item img,
+.car-itemr img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.car-item button,
+.car-itemr button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* עיצוב טבלאות */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+thead th {
+    background-color: #0078D4;
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+tbody td {
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody img {
+    max-width: 80px;
+    border-radius: 5px;
+}
+
+/* עיצוב כפתורים */
+button {
+    padding: 0.75rem 1.5rem;
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005A9C;
+}
+
+/* עיצוב טפסים */
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* עיצוב הודעות */
+#total-amount, #totalPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #0078D4;
+    text-align: center;
+}
+
+/* עיצוב קישורים */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a button {
+    display: inline-block;
+    text-align: center;
+}
+
+/* מדיה-קוורי למסכים קטנים */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+    }
+
+    .car-item,
+    .car-itemr {
+        flex: 0 1 100%; /* פריטים במסכים קטנים מתרחבים לרוחב מלא */
+    }
+
+    button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+
+
+
+
+
+
+/* עיצוב טכנולוגי לעמוד התשלום */
+
+/* עיצוב טכנולוגי נקי לעמוד התשלום */
+.payment-container {
+    background: rgba(255, 255, 255, 0.1); /* רקע שקוף עדין */
+    padding: 30px;
+    border-radius: 15px; /* פינות מעוגלות */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* גבול דק ושקוף */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* הצללה עדינה */
+    color: #FFFFFF; /* טקסט לבן */
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    backdrop-filter: blur(10px); /* אפקט טשטוש לרקע */
+}
+
+/* כותרת ראשית */
+.payment-container h1 {
+    font-size: 1.8rem;
+    color: #00FFFF;
+    text-shadow: none;
+    margin-bottom: 20px;
+    font-weight: 600;
+
+}
+
+
+
+/* שדות הקלט */
+.payment-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.payment-container input:focus {
+    border: 1px solid #00FFFF;
+}
+
+/* תוויות */
+.payment-container label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* כפתור התשלום */
+.payment-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #0078D4, #00FFFF);
+    color: #FFFFFF;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.payment-container button:hover {
+    background: linear-gradient(45deg, #00FFFF, #0078D4);
+    transform: scale(1.02);
+}
+
+/* הודעת סכום */
+.payment-container #total-amount {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+
+
+/* אלמנטים מרחפים בצדדי התשלום */
+.payment-container::before,
+.payment-container::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #0078D4, #00FFFF);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: float 5s infinite ease-in-out;
+    z-index: -1; /* מתחת למיכל התשלום */
+}
+
+.payment-container::before {
+    top: -50px;
+    left: -50px;
+    box-shadow: 0 0 20px #0078D4;
+}
+
+.payment-container::after {
+    bottom: -50px;
+    right: -50px;
+    box-shadow: 0 0 20px #00FFFF;
+}
+
+/* אנימציית ריחוף */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+}
+
+
+/*עמוד הבית/*
+
+/* עיצוב גוף הדף */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.payment-page {
+    background-image: url('images/1.jpg'); /* רקע לעמוד התשלום בלבד */
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+/* עיצוב הכותרת */
+header.header {
+    background: rgba(0, 0, 0, 0.8);
+    color: #00FFFF;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+    text-transform: uppercase;
+}
+
+header.header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #0078D4;
+}
+
+header.header p {
+    font-size: 1.2rem;
+    margin: 5px 0 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+header.header a div {
+    background: linear-gradient(45deg, #0078D4, #00FFFF);
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+header.header a div:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00FFFF;
+}
+
+/* עיצוב התוכן המרכזי */
+/* עיצוב המלבן הגדול בוורוד */
+main.main {
+    margin: 2rem auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    background: linear-gradient(135deg, #1c1c1e, #2d2d2f); /* שחור מט לכחול כהה */
+    border-radius: 15px; /* פינות מעוגלות */
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5); /* הצללה ורודה */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    text-align: center; /* ממרכז את הטקסט */
+    color: #FFFFFF; /* טקסט לבן */
+}
+
+
+/* עיצוב פריטי הגלריה */
+/* עיצוב פריטי הגלריה - סגול */
+.car-itemr {
+    background: linear-gradient(135deg, #6a0dad, #8b5cf6); /* מעבר צבעים סגול */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.5); /* הצללה סגולה */
+    text-align: center;
+    width: 250px;
+    transition: 0.3s ease;
+    color: #FFFFFF; /* טקסט לבן */
+}
+
+.car-itemr img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.car-itemr:hover {
+    transform: scale(1.02); /* הגדלה עדינה */
+    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.7); /* הצללה מוגברת */
+}
+
+.car-itemr h2 {
+    font-size: 1.5rem;
+    color: #ffffff; /* כותרת בלבן */
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+.car-itemr button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #7e22ce, #9333ea); /* מעבר צבעים סגול כהה */
+    color: #FFFFFF; /* טקסט לבן */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.car-itemr button:hover {
+    background: linear-gradient(45deg, #9333ea, #7e22ce); /* שינוי צבע בהובר */
+    box-shadow: 0 0 10px rgba(126, 34, 206, 0.7); /* הצללה נוספת */
+}
+
+.car-itemr img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.car-itemr:hover img {
+    transform: scale(1.05);
+}
+
+.car-itemr h2 {
+    font-size: 1.5rem;
+    color: #00FFFF;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #00FFFF;
+}
+
+.car-itemr button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #0078D4, #00FFFF);
+    color: #FFFFFF;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.car-itemr button:hover {
+    background: linear-gradient(45deg, #00FFFF, #0078D4);
+    box-shadow: 0 0 10px #00FFFF;
+}
+
+/* עיצוב תחתית הדף */
+footer.footer {
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 -4px 10px rgba(8, 119, 119, 0.3)
+}
+
+
+
+
+/* רקע לעמוד הבית בלבד */
+body.home-page {
+    background-image: url('images/3.jpg'); /* תמונת הרקע */
+    background-size: cover; /* כיסוי מלא */
+    background-attachment: fixed; /* נשאר במקום */
+    background-repeat: no-repeat; /* לא חוזר */
+}
+
+
+
+/* מרווח בין ריבועים*/
+.car-list1 {
+    gap: 30px;
+    padding: 20px;
+}
+
+
+
+/*אנימציות לכפתורים*/
+.car-itemr button {
+    background: linear-gradient(45deg, #0078D4, #00FFFF);
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.car-itemr button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 255, 255, 0.7);
+}
+
+
+
+/*תאורה לכרטיסים*/
+.car-itemr {
+    background: linear-gradient(135deg, #4a148c, #7b1fa2);
+    box-shadow: 0px 4px 15px rgba(75, 0, 130, 0.5);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.car-itemr:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 20px rgba(138, 43, 226, 0.7);
+}
+
+/*גופנים פונטים*/
+h1, h2, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*אנימציית ריחוף*/
+.car-itemr:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* כותרת ההמלצות במרכז */
+h2 {
+    text-align: center; /* ממקם את כל כותרות ה-h2 במרכז */
+    font-size: 24px;
+    color: #a32dc1;
+    margin-bottom: 15px;
+}
+
+/* עיצוב המלצות המשתמש */
+ul {
+    list-style: none; /* מסיר נקודות מהרשימה */
+    padding: 0;
+    margin: 0 auto; /* ממקם את הרשימה במרכז */
+    max-width: 600px; /* קובע רוחב מקסימלי לרשימה */
+}
+
+ul li {
+    background: #29293d; /* רקע כהה */
+    color: #dddddd; /* צבע טקסט אפור בהיר */
+    padding: 15px; /* ריפוד פנימי */
+    margin-bottom: 10px; /* רווח בין התגובות */
+    border-radius: 8px; /* מעגל את הפינות */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* צל קטן */
+    transition: transform 0.2s ease-in-out;
+    font-size: 16px;
+}
+
+ul li:hover {
+    background: #33334c; /* רקע כהה יותר בהובר */
+    transform: translateY(-5px); /* תזוזה קלה למעלה */
+    color: #f5b4ff; /* צבע טקסט זהוב */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* עיצוב מקטע התגובות - טכנולוגי ומודרני */
+/* עיצוב אחיד למקטעים */
+/* עיצוב אחיד לכל המקטעים */
+.video-container,
+.recommendations,
+.contact-form {
+    margin: 30px auto; /* ריווח בין המקטעים */
+    padding: 20px;
+    background: linear-gradient(135deg, #2a2a3b, #1f1f2e); /* רקע כהה עם מעבר צבעים */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* הצללה עדינה */
+    max-width: 800px; /* גבול רוחב */
+    text-align: center; /* מרכז את הטקסט */
+    box-sizing: border-box; /* למנוע חריגות */
+}
+
+/* כותרות */
+.video-container h2,
+.recommendations h2,
+.contact-form h2 {
+    color: #f5b4ff; /* צבע כותרת */
+    font-size: 24px;
+    margin-bottom: 15px; /* ריווח מתחת לכותרת */
+}
+
+/* טופס צור קשר */
+.contact-form form {
+    margin: 0 auto; /* מרכז את הטופס */
+    max-width: 600px; /* מגביל את הרוחב */
+    text-align: left; /* יישור שמאלה */
+}
+
+.contact-form form label {
+    font-size: 16px;
+    color: #f5b4ff; /* צבע הלייבל */
+    margin-bottom: 5px;
+    display: block; /* הלייבל מעל התיבה */
+}
+
+.contact-form form textarea {
+    width: 100%; /* התאמה לרוחב הטופס */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background: #29293d;
+    color: #f5b4ff;
+    font-size: 14px;
+    box-sizing: border-box; /* מניעת חריגות */
+    display: block; /* מציב את התיבה כאלמנט בלוק */
+}
+
+.contact-form form button {
+    margin-top: 15px; /* רווח מעל הכפתור */
+    background: #00ccff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    display: block;
+    margin: 15px auto 0 auto; /* ממרכז את הכפתור */
+}
+
+.contact-form form button:hover {
+    background: #0088cc; /* שינוי צבע בהובר */
+}
+
+
+header.header a div, header.header div {
+    background: linear-gradient(45deg, #0078D4, #00FFFF);
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+header.header a div:hover, header.header div:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00FFFF;
+}

@@ -1,0 +1,159 @@
+<html>
+
+<head>
+    <title>TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Designhomeoffice">
+    <header>
+        <h1>Design items for the home office</h1>
+        <h2 id="welcome-user"></h2>
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"  style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+        <button onclick="logout()">Logout</button>
+        <a href="home.html">
+            <button>back</button>
+        </a>
+        
+        <a href="login.html">
+            <button>Login</button>
+          </a>
+    </header>
+    <main>
+
+        <div class="filters">
+            <h2>Filters</h2>
+        
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number" id="price-min" placeholder="minimum">
+                <label for="price-max">max price</label>
+                <input type="number" id="price-max" placeholder="maximum">
+            </div>
+            
+            <button onclick="filterCars()">get filter</button>
+
+        </div>
+
+
+        <div id="car-list" class="car-gallery">
+            <div class="car-item">
+                <img src="images/Design items for the home office/Coasterscups.jpg">
+                <h3>Coasters for cups</h3>
+                <p>Coasters for cups in a chip design, with patterns of electric circuits and metallic finishes.</p>
+                <p>price: 140 ₪</p>
+                <span id="inventory_23"></span>
+            </br>
+                <button onclick="addToCart(23, 'Coasters for cups', 140,'images/Design items for the home office/Coasterscups.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/Deskorganizer2.jpg">
+                <h3>Desktop organizer</h3>
+                <p>A desktop organizer with a pattern of electric circuits, which includes different compartments for stationery items.</p>
+                <p>price: 250 ₪</p>
+                <span id="inventory_24"></span>
+            </br>
+                <button onclick="addToCart(24, 'Desktop organizer', 250,'images/Design items for the home office/Deskorganizer2.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/Digitalwallclock.jpg">
+                <h3>Digital wall clock</h3>
+                <p>A digital wall clock in a technological design, with luminous numbers and delicate electrical circuit patterns</p>
+                <p>price: 330 ₪</p>
+                <span id="inventory_25"></span>
+            </br>
+                <button onclick="addToCart(25, 'Digital wall clock', 330,'images/Design items for the home office/Digitalwallclock.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/Mousepad.jpg">
+                <h3>Mouse pad</h3>
+                <p>A mouse pad with running code graphics, on a dark background and a modern look.</p>
+                <p>price: 90 ₪</p>
+                <span id="inventory_26"></span>
+            </br>
+                <button onclick="addToCart(26, 'Mouse pad', 90,'images/Design items for the home office/Mousepad.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/noticeboard.jpg">
+                <h3>Bulletin board</h3>
+                <p>Binary code design bulletin board, with metallic touches and vivid colors</p>
+                <p>price: 360 ₪</p>
+                <span id="inventory_27"></span>
+            </br>
+                <button onclick="addToCart(27, 'Bulletin board', 360,'images/Design items for the home office/noticeboard.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/penstand.jpg">
+                <h3>Pen stand</h3>
+                <p>Pen stand in the shape of a computer processor, with precise details of circuits and a modern design</p>
+                <p>price: 150 ₪</p>
+                <span id="inventory_28">inventory: 5</span>
+            </br>
+                <button onclick="addToCart(28, 'Pen stand', 150,'images/Design items for the home office/penstand.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/pillow.jpg">
+                <h3>Decorative pillow</h3>
+                <p>Decorative pillow with the inscription "Think Like a Coder", in a technological design with circle patterns in the background</p>
+                <p>price: 240 ₪</p>
+                <span id="inventory_29"></span>
+            </br>
+                <button onclick="addToCart(29, 'Decorative pillow', 240,'images/Design items for the home office/pillow.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/poster.jpg">
+                <h3>Poster</h3>
+                <p>A poster with the inscription "Keep Calm and Debug On", in a technological design with examples of electric circuits</p>
+                <p>price: 80 ₪</p>
+                <span id="inventory_30"></span>
+            </br>
+                <button onclick="addToCart(30, 'Poster', 80,'images/Design items for the home office/poster.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/setofbookends.jpg">
+                <h3>Set of bookends</h3>
+                <p>A set of futuristic circuit board design bookends, with intricate details and metallic finishes</p>
+                <p>price: 320 ₪</p>
+                <span id="inventory_31"></span>
+            </br>
+                <button onclick="addToCart(31, 'Set of bookends', 320,'images/Design items for the home office/setofbookends.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Design items for the home office/tablelamp.jpg">
+                <h3>Desk lamp</h3>
+                <p>A desk lamp in a motherboard design, with examples of electrical circuits and glowing LED lighting</p>
+                <p>price: 420 ₪</p>
+                <span id="inventory_32"></span>
+            </br>
+                <button onclick="addToCart(32, 'Desk lamp', 420,'images/Design items for the home office/tablelamp.jpg')">add to cart</button>
+            </div>
+
+        </div>
+       
+
+    </main>
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+      </footer>
+    <script src="javaAll.js"></script>
+</body>
+
+</html>
+

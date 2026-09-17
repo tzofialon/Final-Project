@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <title>TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Equipmentandaccessories">
+    <header>
+        <h1>Equipment and accessories</h1>
+        <h2 id="welcome-user"></h2>
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"  style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+        <button onclick="logout()">Logout</button>
+        <a href="home.html">
+            <button>back</button>
+        </a>
+        
+        <a href="login.html">
+            <button>Login</button>
+          </a>
+    </header>
+    <main>
+
+        <div class="filters">
+            <h2>Filters</h2>
+        
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number" id="price-min" placeholder="minimum">
+                <label for="price-max">max price</label>
+                <input type="number" id="price-max" placeholder="maximum">
+            </div>
+            
+            <button onclick="filterCars()">get filter</button>
+
+        </div>
+
+
+        <div id="car-list" class="car-gallery">
+            <div class="car-item">
+                <img src="images/Equipment and accessories/backbag.jpg">
+                <h3>Backpack</h3>
+                <p>A fashionable backpack with a minimalistic design of a printed electrical circuit and the inscription "Code and Carry".</p>
+                <p>price: 150 ₪</p>
+                <span id="inventory_12"></span>
+            </br>
+                <button onclick="addToCart(12, 'Backpack', 150,'images/Equipment and accessories/backbag.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/backpacktechnologicaldesign.jpg">
+                <h3>Backpack2</h3>
+                <p>A backpack in a technological design with the inscription "Debug & Deploy" and a combination of electrical circuit samples.</p>
+                <p>price: 200 ₪</p>
+                <span id="inventory_13"></span>
+            </br>
+                <button onclick="addToCart(13, 'Backpack2', 200,'images/Equipment and accessories/backpacktechnologicaldesign.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/keyholder.jpg">
+                <h3>Key holder</h3>
+                <p>The key holder has a motherboard design, with intricate details of printed circuits and metallic looking components</p>
+                <p>price: 70 ₪</p>
+                <span id="inventory_14"></span>
+            </br>
+                <button onclick="addToCart(14, 'Key holder', 70,'images/Equipment and accessories/keyholder.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/Laptopcover.jpg">
+                <h3>Laptop cover</h3>
+                <p>Laptop cover with a spectacular design of electric circuits in shades of neon blue, green and black for a futuristic look</p>
+                <p>price: 170 ₪</p>
+                <span id="inventory_15"></span>
+            </br>
+                <button onclick="addToCart(15, 'Laptop cover', 170,'images/Equipment and accessories/Laptopcover.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/luggagecover.jpg">
+                <h3>Charger cover</h3>
+                <p>Computer chip design charger cover, with details of electric circuits and metallic accents.</p>
+                <p>price: 130 ₪</p>
+                <span id="inventory_16"></span>
+            </br>
+                <button onclick="addToCart(16, 'Charger cover', 130,'images/Equipment and accessories/luggagecover.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/mouse.jpg">
+                <h3>Ergonomic mouse</h3>
+                <p>Ergonomic mouse with a colorful code pattern that combines shades of neon blue, green and orange</p>
+                <p>price: 100 ₪</p>
+                <span id="inventory_17"></span>
+            </br>
+                <button onclick="addToCart(17, 'Ergonomic mouse', 100,'images/Equipment and accessories/mouse.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/notebook.jpg">
+                <h3>Notebook</h3>
+                <p>A notebook in the design of an old computer with a retro look and a motivational inscription on the cover.</p>
+                <p>price: 60 ₪</p>
+                <span id="inventory_18"></span>
+            </br>
+                <button onclick="addToCart(18, 'Notebook', 60,'images/Equipment and accessories/notebook.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/Phonestand.jpg">
+                <h3>Phone stand</h3>
+                <p>Phone stand in the form of a hardware component, with polished metallic elements and subtle reliefs of electrical circuits.</p>
+                <p>price: 120 ₪</p>
+                <span id="inventory_19"></span>
+            </br>
+                <button onclick="addToCart(19, 'Phone stand', 120,'images/Equipment and accessories/Phonestand.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/sidebag.jpg">
+                <h3>Side bag</h3>
+                <p>The side bag with the inscription "Code & Go" in a minimalist and modern design.</p>
+                <p>price: 240 ₪</p>
+                <span id="inventory_20"></span>
+            </br>
+                <button onclick="addToCart(20, 'Side bag', 240,'images/Equipment and accessories/sidebag.jpg')">add to cart</button>
+            </div>
+
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/Smartwaterbottle.jpg">
+                <h3>Smart water bottle</h3>
+                <p>A smart water bottle with a digital time display and a modern design, including touches of bright blue and silver.</p>
+                <p>price: 260 ₪</p>
+                <span id="inventory_21"></span>
+            </br>
+                <button onclick="addToCart(21, 'Smart water bottle', 260,'images/Equipment and accessories/Smartwaterbottle.jpg')">add to cart</button>
+            </div>
+
+            <div class="car-item">
+                <img src="images/Equipment and accessories/tableorganizer.jpg">
+                <h3>Futuristic table organizer</h3>
+                <p>Futuristic table organizer in the design of a mini-server, with compartments for pens, notes and gadgets.</p>
+                <p>price: 290 ₪</p>
+                <span id="inventory_22"></span>
+            </br>
+                <button onclick="addToCart(22, 'Futuristic table organizer', 290,'images/Equipment and accessories/tableorganizer.jpg')">add to cart</button>
+            </div>
+
+        </div>
+
+    </main>
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+      </footer>
+    <script src="javaAll.js"></script>
+</body>
+
+</html>
+

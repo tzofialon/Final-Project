@@ -1,0 +1,548 @@
+
+/*עיצוב עמוד התחברות*/
+body.login-page {
+    font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', Arial, sans-serif;
+    font-size: 28px; /* הגדלת גודל הכיתוב */
+    line-height: 1.6;
+    color: #ce18ce; /* צבע סגלגל לטקסט */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-image: url(./images//cssimages/2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.login-page form label {
+    color: #ce18ce; /* צבע הכותרת */
+    font-weight: bold; /* מדגיש את הטקסט */
+    font-size: 18px;
+}
+button.login-button {
+    background-color: #ce18ce; /* צבע סגלגל לכפתור */
+    color: #fff; /* צבע טקסט לבן לכפתור */
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.login-button:hover {
+    background-color: #6c1fa6; /* גוון כהה יותר בעת ריחוף */
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #8a8af3; /* צבע רקע */
+    color: #ce18ce; /* צבע טקסט סגלגל */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*עד כאן עמוד התחברות*/
+
+/*  עגלת קניות עיצוב כללי לעמוד */
+body.shopping-cart-page {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('./images//cssimages/3.jpg') no-repeat center center fixed; /* תמונה כרקע */
+    background-size: cover;
+    color: #ffffff; /* צבע טקסט לבן */
+    overflow-x: hidden;
+}
+
+/* שכבת רקע למלבן */
+body.shopping-cart-page #cartTableD {
+    background-color: rgba(0, 0, 0, 0.5); /* רקע כהה שקוף יותר */
+    padding: 20px;
+    border-radius: 8px; /* פינות מעוגלות */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* הצללה */
+}
+
+/* עיצוב הטבלה */
+body.shopping-cart-page #cartTable {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    color: #ffffff; /* צבע טקסט לבן */
+}
+
+body.shopping-cart-page #cartTable th, 
+body.shopping-cart-page #cartTable td {
+    padding: 15px 20px;
+    text-align: center;
+    vertical-align: middle;
+    background: rgba(255, 255, 255, 0.1); /* רקע שקוף עדין */
+    color: #ffffff; /* צבע טקסט לבן */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.shopping-cart-page #cartTable th {
+    background: rgba(255, 255, 255, 0.2); /* רקע מעט בהיר יותר לכותרות */
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+body.shopping-cart-page #cartTable tr:hover td {
+    background: rgba(255, 255, 255, 0.3); /* אפקט הובר שקוף */
+}
+
+/* עיצוב כפתורים */
+body.shopping-cart-page button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #8c00ff, #ff0099); /* מעבר צבע */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(144, 0, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.shopping-cart-page button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 0, 153, 0.7);
+}
+
+/* עיצוב תחתית העמוד */
+body.shopping-cart-page .footer {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6); 
+    color: #ffffff;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* עיצוב הכותרת */
+body.shopping-cart-page header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* רקע כהה */
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.shopping-cart-page header h1 {
+    font-size: 4rem;
+    margin: 0;
+    text-shadow: 0 4px 10px rgba(144, 0, 255, 0.5); /* הצללה לטקסט */
+}
+/* עד כאן עיצוב עגלת קניות/
+
+/**עיצוב לעמודי מוצרים  בלבד**/
+
+body.Advanced.gadgets,
+body.Designhomeoffice,
+body.Equipmentandaccessories,
+body.Giftsandpersonalproducts,
+body.Technologicalfashion {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('./images//cssimages/4.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #000000; /* צבע טקסט שחור */
+    overflow-x: hidden;
+}
+
+/* עיצוב כותרת בעמודים עם מחלקות ספציפיות */
+body.Advanced.gadgets header,
+body.Designhomeoffice header,
+body.Equipmentandaccessories header,
+body.Giftsandpersonalproducts header,
+body.Technologicalfashion header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* רקע כהה */
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.Advanced.gadgets header h1,
+body.Designhomeoffice header h1,
+body.Equipmentandaccessories header h1,
+body.Giftsandpersonalproducts header h1,
+body.Technologicalfashion header h1 {
+    margin: 0;
+    font-size: 4rem;
+    text-shadow: 0 4px 10px rgba(144, 0, 255, 0.5); /* הצללה לטקסט */
+}
+
+/* עיצוב כפתור חזור או קישור בעמודים עם מחלקות ספציפיות */
+body.Advanced.gadgets header a,
+body.Designhomeoffice header a,
+body.Equipmentandaccessories header a,
+body.Giftsandpersonalproducts header a,
+body.Technologicalfashion header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 10px;
+}
+
+body.Advanced.gadgets header button,
+body.Designhomeoffice header button,
+body.Equipmentandaccessories header button,
+body.Giftsandpersonalproducts header button,
+body.Technologicalfashion header button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #8c00ff, #ff0099); /* מעבר צבע */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(144, 0, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.Advanced.gadgets header button:hover,
+body.Designhomeoffice header button:hover,
+body.Equipmentandaccessories header button:hover,
+body.Giftsandpersonalproducts header button:hover,
+body.Technologicalfashion header button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 0, 153, 0.7);
+}
+
+/* עיצוב הגלריה */
+body.Advanced.gadgets .car-gallery,
+body.Designhomeoffice .car-gallery,
+body.Equipmentandaccessories .car-gallery,
+body.Giftsandpersonalproducts .car-gallery,
+body.Technologicalfashion .car-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+body.Advanced.gadgets .car-item,
+body.Designhomeoffice .car-item,
+body.Equipmentandaccessories .car-item,
+body.Giftsandpersonalproducts .car-item,
+body.Technologicalfashion .car-item {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #000000; /* טקסט שחור */
+    padding: 20px;
+    text-align: center;
+    width: 280px;
+}
+
+body.Advanced.gadgets .car-item img,
+body.Designhomeoffice .car-item img,
+body.Equipmentandaccessories .car-item img,
+body.Giftsandpersonalproducts .car-item img,
+body.Technologicalfashion .car-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+body.Advanced.gadgets .car-item h3,
+body.Designhomeoffice .car-item h3,
+body.Equipmentandaccessories .car-item h3,
+body.Giftsandpersonalproducts .car-item h3,
+body.Technologicalfashion .car-item h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #6b17a3;
+}
+
+body.Advanced.gadgets .car-item p,
+body.Designhomeoffice .car-item p,
+body.Equipmentandaccessories .car-item p,
+body.Giftsandpersonalproducts .car-item p,
+body.Technologicalfashion .car-item p {
+    font-size: 1rem;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+body.Advanced.gadgets .car-item button,
+body.Designhomeoffice .car-item button,
+body.Equipmentandaccessories .car-item button,
+body.Giftsandpersonalproducts .car-item button,
+body.Technologicalfashion .car-item button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #8c00ff, #ff0099);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(144, 0, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.Advanced.gadgets .car-item button:hover,
+body.Designhomeoffice .car-item button:hover,
+body.Equipmentandaccessories .car-item button:hover,
+body.Giftsandpersonalproducts .car-item button:hover,
+body.Technologicalfashion .car-item button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 0, 153, 0.7);
+}
+/* עיצוב המסננים */
+body.Advanced.gadgets .filters,
+body.Designhomeoffice .filters,
+body.Equipmentandaccessories .filters,
+body.Giftsandpersonalproducts .filters,
+body.Technologicalfashion .filters {
+    background: rgba(0, 0, 10, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    color: #000000; /* טקסט שחור */
+}
+
+body.Advanced.gadgets .filters h2,
+body.Designhomeoffice .filters h2,
+body.Equipmentandaccessories .filters h2,
+body.Giftsandpersonalproducts .filters h2,
+body.Technologicalfashion .filters h2 {
+    font-size: 2rem;
+    color:  rgba(22, 9, 32, 0.603);
+}
+
+body.Advanced.gadgets .filters label,
+body.Designhomeoffice .filters label,
+body.Equipmentandaccessories .filters label,
+body.Giftsandpersonalproducts .filters label,
+body.Technologicalfashion .filters label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 1.1rem;
+}
+
+body.Advanced.gadgets .filters input,
+body.Designhomeoffice .filters input,
+body.Equipmentandaccessories .filters input,
+body.Giftsandpersonalproducts .filters input,
+body.Technologicalfashion .filters input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+body.Advanced.gadgets .filters button,
+body.Designhomeoffice .filters button,
+body.Equipmentandaccessories .filters button,
+body.Giftsandpersonalproducts .filters button,
+body.Technologicalfashion .filters button {
+    margin-top: 10px;
+}
+
+/* עיצוב תחתית העמוד */
+body.Advanced.gadgets .footer,
+body.Designhomeoffice .footer,
+body.Equipmentandaccessories .footer,
+body.Giftsandpersonalproducts .footer,
+body.Technologicalfashion .footer {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6); 
+    color: #ffffff;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/**עד כאן עמודי מוצרים*/
+
+
+/* עיצוב גוף הדף */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+/* עיצוב תוכן מרכזי */
+main {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* עיצוב גלריית מוצרים */
+.car-gallery,
+.car-list1 {
+    display: flex;
+    flex-wrap: wrap; /* מאפשר מעבר לשורה חדשה */
+    gap: 20px; /* רווח בין האלמנטים */
+    justify-content: center; /* מרכז את האלמנטים */
+    align-items: flex-start; /* מיישר את האלמנטים לראש השורה */
+}
+
+/* עיצוב פריטים בתוך הגלריה */
+.car-item,
+.car-itemr {
+    flex: 0 1 200px; /* קובע גודל מינימלי ומאפשר גמישות */
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    max-width: 200px;
+}
+
+.car-item img,
+.car-itemr img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.car-item button,
+.car-itemr button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* עיצוב טבלאות */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+thead th {
+    background-color: #0078D4;
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+tbody td {
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody img {
+    max-width: 80px;
+    border-radius: 5px;
+}
+
+/* עיצוב כפתורים */
+button  {
+    padding: 0.75rem 1.5rem;
+    background-color: #ce18ce;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005A9C;
+}
+
+/* עיצוב טפסים */
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* עיצוב הודעות */
+#total-amount, #totalPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #0078D4;
+    text-align: center;
+}
+
+/* עיצוב קישורים */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a button {
+    display: inline-block;
+    text-align: center;
+}
+
+/* מדיה-קוורי למסכים קטנים */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+    }
+
+    .car-item,
+    .car-itemr {
+        flex: 0 1 100%; /* פריטים במסכים קטנים מתרחבים לרוחב מלא */
+    }
+
+    button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+body.Advanced.gadgets .car-item,
+body.Designhomeoffice .car-item,
+body.Equipmentandaccessories .car-item,
+body.Giftsandpersonalproducts .car-item,
+body.Technologicalfashion .car-item {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #000000; /* טקסט שחור */
+    padding: 20px;
+    text-align: center;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 500px; /* הגדרת גובה מינימלי זהה */
+}
