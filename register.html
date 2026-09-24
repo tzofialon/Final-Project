@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="login-page">
+
+    <h1>Register</h1>
+
+    <form id="registerForm">
+
+        <label>User name</label>
+        <input type="text" id="username" required>
+
+        <label>Email</label>
+        <input type="email" id="email" required>
+
+        <label>Password</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const user = {
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            };
+
+            const response = await fetch("http://localhost:3000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            });
+
+            const message = await response.text();
+            alert(message);
+        });
+    </script>
+
+</body>
+</html>

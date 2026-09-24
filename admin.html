@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body>
+
+    <h1>Admin Dashboard</h1>
+
+    <h2>Registered Users</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+
+        <tbody id="usersTable"></tbody>
+    </table>
+
+    <script>
+        async function loadUsers() {
+
+            const username = localStorage.getItem("username");
+            const role = localStorage.getItem("role");
+            alert("username = " + username + " | role = " + role);
+
+            if (role !== "admin") {
+                alert("Access denied");
+                window.location.href = "home.html";
+                return;
+            }
+
+            const response = await fetch(
+                `http://localhost:3000/users?username=${username}`
+            );
+
+            if (!response.ok) {
+                alert("Access denied");
+                window.location.href = "home.html";
+                return;
+            }
+
+            const users = await response.json();
+
+            const table = document.getElementById("usersTable");
+
+            users.forEach(user => {
+                table.innerHTML += `
+                    <tr>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.role}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        loadUsers();
+    </script>
+
+</body>
+</html>
