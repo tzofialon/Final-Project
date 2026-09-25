@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Advanced gadgets">
+
+    <header>
+        <h1>Advanced gadgets</h1>
+        <h2 id="welcome-user"></h2>
+
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"
+                     style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+
+        <button onclick="logout()">Logout</button>
+
+        <a href="home.html">
+            <button>back</button>
+        </a>
+
+        <a href="login.html">
+            <button>Login</button>
+        </a>
+    </header>
+
+
+    <main>
+
+        <div class="filters">
+
+            <h2>Filters</h2>
+
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number"
+                       id="price-min"
+                       placeholder="minimum">
+
+                <label for="price-max">max price</label>
+                <input type="number"
+                       id="price-max"
+                       placeholder="maximum">
+            </div>
+
+            <button onclick="filterCars()">get filter</button>
+
+        </div>
+
+
+        <!-- Products from MongoDB will appear here -->
+        <div id="car-list" class="car-gallery"></div>
+
+    </main>
+
+
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+    </footer>
+
+
+    <script src="javaAll.js"></script>
+
+
+    <script>
+
+        async function loadProducts() {
+
+            try {
+
+                const response =
+                    await fetch("http://localhost:3000/products");
+
+                const products = await response.json();
+
+                const productList =
+                    document.getElementById("car-list");
+
+                productList.innerHTML = "";
+
+
+                products.forEach(product => {
+
+                    productList.innerHTML += `
+
+                        <div class="car-item">
+
+                            <img src="${product.image}">
+
+                            <h3>${product.name}</h3>
+
+                            <p>${product.description}</p>
+
+                            <p>price: ${product.price} ₪</p>
+
+                            <span id="inventory_${product.productId}"></span>
+
+                            <br>
+
+                            <button onclick="addToCart(
+                                ${product.productId},
+                                '${product.name}',
+                                ${product.price},
+                                '${product.image}'
+                            )">
+                                add to cart
+                            </button>
+
+                        </div>
+                    `;
+                });
+
+            } catch (error) {
+
+                console.log(
+                    "Error loading products:",
+                    error
+                );
+
+            }
+        }
+
+
+        loadProducts();
+
+    </script>
+
+</body>
+
+</html>
+

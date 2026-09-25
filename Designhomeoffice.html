@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TechGeek</title>
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Designhomeoffice">
+
+    <header>
+        <h1>Design items for the home office</h1>
+        <h2 id="welcome-user"></h2>
+
+        <a href="shopcart.html">
+            <div>
+                <img src="images/cssimages/sopping.jpeg"
+                     style="width: 70px; height:70px;">
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+
+        <button onclick="logout()">Logout</button>
+
+        <a href="home.html">
+            <button>back</button>
+        </a>
+
+        <a href="login.html">
+            <button>Login</button>
+        </a>
+    </header>
+
+    <main>
+
+        <div class="filters">
+            <h2>Filters</h2>
+
+            <div>
+                <label for="price-min">min price</label>
+                <input type="number"
+                       id="price-min"
+                       placeholder="minimum">
+
+                <label for="price-max">max price</label>
+                <input type="number"
+                       id="price-max"
+                       placeholder="maximum">
+            </div>
+
+            <button onclick="filterCars()">get filter</button>
+        </div>
+
+
+        <!-- Products are loaded from MongoDB -->
+        <div id="car-list" class="car-gallery"></div>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+    </footer>
+
+
+    <script src="javaAll.js"></script>
+
+    <script>
+        loadProductsFromMongo("Design items for the home office");
+    </script>
+
+</body>
+
+</html>
