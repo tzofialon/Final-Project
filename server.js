@@ -1,194 +1,130 @@
+// ================================
+// IMPORTS - ספריות שהשרת צריך
+// ================================
+
+// ספרייה ליצירת השרת
 const express = require("express");
+
+// ספרייה לעבודה עם MongoDB
 const mongoose = require("mongoose");
+
+// מאפשר תקשורת בין ה-Frontend לשרת
 const cors = require("cors");
 
+
+// יצירת שרת Express
 const app = express();
 
-console.log("Server folder:", __dirname);
 
+// מאפשר קבלת בקשות מה-Frontend
 app.use(cors());
+
+// מאפשר לשרת לקבל מידע בפורמט JSON
 app.use(express.json());
+
+// מאפשר לשרת להציג את קבצי האתר
 app.use(express.static(__dirname));
 
 
-app.get("/login.html", (req, res) => {
-    res.sendFile(__dirname + "/login.html");
-});
 
-
-// ========================================
+// ================================
 // USER SCHEMA
-// ========================================
+// ================================
 
+// מגדיר את המבנה של משתמש ב-MongoDB
 const userSchema = new mongoose.Schema({
+
     username: String,
+
     email: String,
+
     password: String,
+
+    // סוג המשתמש - מנהל או לקוח
     role: {
         type: String,
         default: "customer"
     }
 });
 
+
+// יצירת מודל User שבעזרתו עובדים מול MongoDB
 const User = mongoose.model("User", userSchema);
 
 
-// ========================================
-// PRODUCT SCHEMA
-// ========================================
 
+// ================================
+// PRODUCT SCHEMA
+// ================================
+
+// מגדיר את המבנה של מוצר ב-MongoDB
 const productSchema = new mongoose.Schema({
+
     productId: Number,
+
     name: String,
+
     price: Number,
+
     category: String,
+
     description: String,
+
     image: String
 });
 
+
+// יצירת מודל Product שבעזרתו עובדים עם המוצרים ב-MongoDB
 const Product = mongoose.model("Product", productSchema);
 
 
-// ========================================
-// REGISTER
-// ========================================
 
+// ================================
+// REGISTER
+// ================================
+
+// מקבל פרטי הרשמה מה-Frontend ושומר משתמש חדש
 app.post("/register", async (req, res) => {
+
     try {
 
+        // יצירת משתמש חדש מהפרטים שהגיעו מהטופס
         const user = new User(req.body);
 
+        // שמירת המשתמש ב-MongoDB
         await user.save();
 
+        // תשובה ל-Frontend אם ההרשמה הצליחה
         res.send("User registered successfully");
 
     } catch (error) {
 
         console.log(error);
 
+        // תשובה במקרה של שגיאה
         res.status(500).send("Error registering user");
     }
+
 });
 
 
-// ========================================
-// OLD ADVANCED GADGETS SEED
-// ========================================
 
-app.post("/products/seed", async (req, res) => {
-    try {
-
-        const products = [
-            {
-                productId: 33,
-                name: "Bluetooth adapter",
-                price: 350,
-                category: "Advanced gadgets",
-                description: "A small Bluetooth adapter with a modern design intended for old devices such as televisions, with LED lighting and a metallic finish",
-                image: "images/Advanced gadgets/Bluetooth.jpg"
-            },
-            {
-                productId: 34,
-                name: "Ergonomic mouse2",
-                price: 370,
-                category: "Advanced gadgets",
-                description: "Ergonomic mouse with buttons adapted to games, in a futuristic design with glowing LED lighting",
-                image: "images/Advanced gadgets/Ergonomicmouse.jpg"
-            },
-            {
-                productId: 35,
-                name: "Smart LED lamp",
-                price: 440,
-                category: "Advanced gadgets",
-                description: "A smart LED lamp in the design of electric circuits, with adjustable lighting in different colors and control via touch or an app",
-                image: "images/Advanced gadgets/LED.jpg"
-            },
-            {
-                productId: 36,
-                name: "Mechanical keyboard",
-                price: 560,
-                category: "Advanced gadgets",
-                description: "A small mechanical keyboard with a unique design inspired by binary code, with custom RGB lighting and a futuristic look.",
-                image: "images/Advanced gadgets/Mechanicalkeyboard.jpg"
-            },
-            {
-                productId: 37,
-                name: "Smart pen",
-                price: 370,
-                category: "Advanced gadgets",
-                description: "A smart pen with advanced functions such as automatic translation and erasing digital handwriting, in a modern design with bright LEDs",
-                image: "images/Advanced gadgets/smartpen.jpg"
-            },
-            {
-                productId: 38,
-                name: "Smart speaker",
-                price: 530,
-                category: "Advanced gadgets",
-                description: "A small smart speaker in the design of a computer chip, with examples of electric circuits and glowing LED lighting",
-                image: "images/Advanced gadgets/Smartspeaker.jpg"
-            },
-            {
-                productId: 39,
-                name: "Smart watch",
-                price: 670,
-                category: "Advanced gadgets",
-                description: "A smart watch with a customized interface for programming and task management, in a modern and technological design.",
-                image: "images/Advanced gadgets/smartwatch.jpg"
-            },
-            {
-                productId: 40,
-                name: "Wireless charger",
-                price: 490,
-                category: "Advanced gadgets",
-                description: "The wireless charger with RGB lighting in the design of electric circuits",
-                image: "images/Advanced gadgets/thewirelesscharger.jpg"
-            },
-            {
-                productId: 41,
-                name: "Webcam",
-                price: 620,
-                category: "Advanced gadgets",
-                description: "The webcam with a custom frame that can be printed in 3D, in a compact and modern design.",
-                image: "images/Advanced gadgets/webcam.jpg"
-            },
-            {
-                productId: 42,
-                name: "Wireless headphones",
-                price: 350,
-                category: "Advanced gadgets",
-                description: "Wireless headphones in a technological design with glowing LED lighting and a futuristic look",
-                image: "images/Advanced gadgets/Wirelessheadphones.jpg"
-            }
-        ];
-
-        await Product.deleteMany({
-            category: "Advanced gadgets"
-        });
-
-        await Product.insertMany(products);
-
-        res.send("Advanced gadgets added successfully");
-
-    } catch (error) {
-
-        console.log(error);
-
-        res.status(500).send("Error adding products");
-    }
-});
-
-
-// ========================================
+// ================================
 // GET PRODUCTS
-// ========================================
+// ================================
 
+// שליפת מוצרים מ-MongoDB
 app.get("/products", async (req, res) => {
+
     try {
 
+        // קבלת הקטגוריה שנשלחה מה-Frontend
         const category = req.query.category;
 
         let products;
 
+
+        // אם נשלחה קטגוריה - מחזירים רק מוצרים מאותה קטגוריה
         if (category) {
 
             products = await Product.find({
@@ -197,10 +133,14 @@ app.get("/products", async (req, res) => {
 
         } else {
 
+            // אם לא נשלחה קטגוריה - מחזירים את כל המוצרים
             products = await Product.find({});
         }
 
+
+        // החזרת המוצרים ל-Frontend כ-JSON
         res.json(products);
+
 
     } catch (error) {
 
@@ -208,52 +148,95 @@ app.get("/products", async (req, res) => {
 
         res.status(500).send("Error getting products");
     }
+
 });
 
 
-// ========================================
-// PRODUCT AGGREGATION / STATISTICS
-// ========================================
 
+// ================================
+// PRODUCT AGGREGATION / STATISTICS
+// ================================
+
+// שאילתת Aggregation לחישוב נתונים על המוצרים
 app.get("/products/stats", async (req, res) => {
+
     try {
 
-        // Statistics for each category
+
+        // חישוב מספר המוצרים והמחיר הממוצע בכל קטגוריה
         const categoryStats = await Product.aggregate([
+
             {
+                // קיבוץ המוצרים לפי קטגוריה
                 $group: {
+
                     _id: "$category",
-                    numberOfProducts: { $sum: 1 },
-                    averagePrice: { $avg: "$price" }
+
+                    // ספירת מספר המוצרים בקטגוריה
+                    numberOfProducts: {
+                        $sum: 1
+                    },
+
+                    // חישוב המחיר הממוצע בקטגוריה
+                    averagePrice: {
+                        $avg: "$price"
+                    }
                 }
             },
+
+
             {
+                // מיון הקטגוריות לפי השם
                 $sort: {
                     _id: 1
                 }
             }
+
         ]);
 
 
-        // Statistics for ALL products together
+
+        // חישוב נתונים על כל המוצרים בחנות ביחד
         const totalStats = await Product.aggregate([
+
             {
                 $group: {
+
+                    // null = לא מחלקים לקטגוריות,
+                    // אלא מתייחסים לכל המוצרים כקבוצה אחת
                     _id: null,
-                    totalProducts: { $sum: 1 },
-                    averagePriceAllProducts: { $avg: "$price" }
+
+                    // מספר המוצרים הכולל
+                    totalProducts: {
+                        $sum: 1
+                    },
+
+                    // המחיר הממוצע של כל המוצרים
+                    averagePriceAllProducts: {
+                        $avg: "$price"
+                    }
                 }
             }
+
         ]);
 
 
+
+        // שליחת תוצאות החישובים ל-Frontend
         res.json({
-            totalProducts: totalStats[0]?.totalProducts || 0,
+
+            // מספר כל המוצרים
+            totalProducts:
+                totalStats[0]?.totalProducts || 0,
+
+            // ממוצע המחירים של כל המוצרים
             averagePriceAllProducts:
                 totalStats[0]?.averagePriceAllProducts || 0,
 
+            // הנתונים שחושבו לכל קטגוריה
             byCategory: categoryStats
         });
+
 
     } catch (error) {
 
@@ -263,23 +246,32 @@ app.get("/products/stats", async (req, res) => {
             "Error getting product statistics"
         );
     }
+
 });
 
 
-// ========================================
-// LOGIN
-// ========================================
 
+// ================================
+// LOGIN
+// ================================
+
+// בדיקת פרטי ההתחברות של המשתמש
 app.post("/login", async (req, res) => {
+
     try {
 
+        // קבלת שם המשתמש והסיסמה מה-Frontend
         const { username, password } = req.body;
 
+
+        // חיפוש משתמש מתאים ב-MongoDB
         const user = await User.findOne({
-            username,
-            password
+            username: username,
+            password: password
         });
 
+
+        // אם לא נמצא משתמש מתאים
         if (!user) {
 
             return res
@@ -287,11 +279,18 @@ app.post("/login", async (req, res) => {
                 .send("Invalid username or password");
         }
 
+
+        // אם המשתמש נמצא - מחזירים את פרטיו ל-Frontend
         res.json({
+
             message: "Login successful",
+
             username: user.username,
+
+            // מחזירים גם את התפקיד כדי לדעת אם הוא admin
             role: user.role
         });
+
 
     } catch (error) {
 
@@ -299,33 +298,34 @@ app.post("/login", async (req, res) => {
 
         res.status(500).send("Error logging in");
     }
+
 });
 
 
-// ========================================
-// GET USERS - ADMIN ONLY
-// ========================================
 
+// ================================
+// GET USERS - ADMIN ONLY
+// ================================
+
+// מחזיר את רשימת המשתמשים רק למנהל
 app.get("/users", async (req, res) => {
+
     try {
 
+        // קבלת שם המשתמש מהבקשה
         const username = req.query.username;
 
-        console.log(
-            "Username received:",
-            username
-        );
 
+        // בדיקה ב-MongoDB שהמשתמש הוא admin
         const admin = await User.findOne({
+
             username: username,
+
             role: "admin"
         });
 
-        console.log(
-            "Admin found:",
-            admin
-        );
 
+        // אם המשתמש אינו מנהל - אין גישה
         if (!admin) {
 
             return res
@@ -333,12 +333,18 @@ app.get("/users", async (req, res) => {
                 .send("Access denied");
         }
 
+
+        // שליפת המשתמשים מ-MongoDB
+        // מחזירים רק username, email ו-role
         const users = await User.find(
             {},
             "username email role"
         );
 
+
+        // החזרת רשימת המשתמשים ל-Frontend
         res.json(users);
+
 
     } catch (error) {
 
@@ -348,36 +354,49 @@ app.get("/users", async (req, res) => {
             "Error getting users"
         );
     }
+
 });
 
 
-// ========================================
-// MONGODB CONNECTION
-// ========================================
 
+// ================================
+// MONGODB CONNECTION
+// ================================
+
+// חיבור למסד הנתונים MongoDB
 mongoose.connect(
-    "mongodb+srv://yohananagosa092_db_user:yohananagosa9@cluster0.8bixhhu.mongodb.net/?appName=Cluster0",
+    "YOUR_MONGODB_CONNECTION_STRING",
     {
         dbName: "techgeek"
     }
 )
+
 .then(() => {
+
     console.log("Connected to MongoDB");
+
 })
+
 .catch((error) => {
+
     console.log(
         "MongoDB connection error:",
         error
     );
+
 });
 
 
-// ========================================
-// START SERVER
-// ========================================
 
+// ================================
+// START SERVER
+// ================================
+
+// הפעלת השרת על פורט 3000
 app.listen(3000, () => {
+
     console.log(
         "Server is running on port 3000"
     );
+
 });

@@ -3,57 +3,86 @@
 
 <head>
     <title>TechGeek</title>
+
+    <!-- קובץ העיצוב של האתר -->
     <link rel="stylesheet" href="paycss.css">
 </head>
+
 
 <body class="Giftsandpersonalproducts">
 
     <header>
+
         <h1>Gifts and personal products</h1>
+
+        <!-- כאן יוצג שם המשתמש המחובר -->
         <h2 id="welcome-user"></h2>
 
+
+        <!-- מעבר לסל הקניות -->
         <a href="shopcart.html">
             <div>
+
                 <img src="images/cssimages/sopping.jpeg"
                      style="width: 70px; height:70px;">
+
+                <!-- מספר המוצרים בסל -->
                 <span id="cart-count">0</span>
+
             </div>
         </a>
 
+
+        <!-- התנתקות -->
         <button onclick="logout()">Logout</button>
 
+
+        <!-- חזרה לדף הבית -->
         <a href="home.html">
             <button>back</button>
         </a>
 
+
+        <!-- מעבר לדף ההתחברות -->
         <a href="login.html">
             <button>Login</button>
         </a>
+
     </header>
 
 
     <main>
 
+        <!-- אזור סינון המוצרים לפי מחיר -->
         <div class="filters">
+
             <h2>Filters</h2>
 
             <div>
+
                 <label for="price-min">min price</label>
+
                 <input type="number"
                        id="price-min"
                        placeholder="minimum">
 
+
                 <label for="price-max">max price</label>
+
                 <input type="number"
                        id="price-max"
                        placeholder="maximum">
+
             </div>
 
+
+            <!-- הפעלת פונקציית הסינון -->
             <button onclick="filterCars()">get filter</button>
+
         </div>
 
 
-        <!-- Products are loaded from MongoDB -->
+        <!-- כאן יוצגו המוצרים שהתקבלו מ-MongoDB -->
         <div id="car-list" class="car-gallery"></div>
 
     </main>
@@ -64,11 +93,17 @@
     </footer>
 
 
+    <!-- קובץ JavaScript שמכיל את הפונקציות -->
     <script src="javaAll.js"></script>
 
+
     <script>
+
+        // בקשת המוצרים ששייכים לקטגוריה הזאת מ-MongoDB
         loadProductsFromMongo("Gifts and personal products");
+
     </script>
+
 
 </body>
 

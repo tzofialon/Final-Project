@@ -1,51 +1,113 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Register - TechGeek</title>
+
+    <!-- קובץ העיצוב -->
     <link rel="stylesheet" href="paycss.css">
 </head>
+
 
 <body class="login-page">
 
     <h1>Register</h1>
 
+
+    <!-- טופס הרשמה של משתמש חדש -->
     <form id="registerForm">
 
+
+        <!-- הכנסת שם משתמש -->
         <label>User name</label>
-        <input type="text" id="username" required>
+        <input type="text"
+               id="username"
+               required>
 
+
+        <!-- הכנסת כתובת אימייל -->
         <label>Email</label>
-        <input type="email" id="email" required>
+        <input type="email"
+               id="email"
+               required>
 
+
+        <!-- הכנסת סיסמה -->
         <label>Password</label>
-        <input type="password" id="password" required>
+        <input type="password"
+               id="password"
+               required>
 
-        <button type="submit">Register</button>
+
+        <!-- שליחת טופס ההרשמה -->
+        <button type="submit">
+            Register
+        </button>
 
     </form>
 
+
     <script>
-        document.getElementById("registerForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
 
-            const user = {
-                username: document.getElementById("username").value,
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value
-            };
+        // האזנה לשליחת טופס ההרשמה
+        document.getElementById("registerForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
 
-            const response = await fetch("http://localhost:3000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
-            });
 
-            const message = await response.text();
-            alert(message);
-        });
+                    // מונע מהדף להתרענן אוטומטית
+                    event.preventDefault();
+
+
+                    // שמירת הפרטים שהוזנו באובייקט
+                    // כדי לשלוח אותם לשרת
+                    const user = {
+
+                        username:
+                            document.getElementById("username").value,
+
+                        email:
+                            document.getElementById("email").value,
+
+                        password:
+                            document.getElementById("password").value
+                    };
+
+
+                    // שליחת פרטי המשתמש החדש לשרת
+                    const response =
+                        await fetch(
+                            "http://localhost:3000/register",
+                            {
+
+                                // POST = שליחת מידע לשרת
+                                method: "POST",
+
+                                // המידע נשלח בפורמט JSON
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+
+                                // המרת האובייקט ל-JSON ושליחתו
+                                body: JSON.stringify(user)
+                            }
+                        );
+
+
+                    // קבלת התשובה מהשרת כטקסט
+                    const message =
+                        await response.text();
+
+
+                    // הצגת תשובת השרת למשתמש
+                    alert(message);
+
+                }
+            );
+
     </script>
 
 </body>
+
 </html>

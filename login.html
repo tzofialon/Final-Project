@@ -1,72 +1,140 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>TechGeek</title>
+
+    <!-- קובץ העיצוב של האתר -->
     <link rel="stylesheet" href="paycss.css">
 </head>
 
+
 <body class="login-page">
 
+    <!-- כותרת עמוד ההתחברות -->
     <h1>Login Page</h1>
 
+
+    <!-- טופס התחברות -->
     <form id="loginForm">
 
+
+        <!-- הכנסת שם משתמש -->
         <label>User name</label>
-        <input type="text" id="username" required
+
+        <input type="text"
+               id="username"
+               required
                placeholder="Enter your username...">
 
+
+        <!-- הכנסת סיסמה -->
         <label>Password</label>
-        <input type="password" id="password" required
+
+        <input type="password"
+               id="password"
+               required
                placeholder="Enter your password...">
+
 
         <br><br>
 
-        <button type="submit" id="login-button">Login</button>
+
+        <!-- שליחת טופס ההתחברות -->
+        <button type="submit" id="login-button">
+            Login
+        </button>
 
     </form>
 
 
+
     <script>
+
+        // האזנה לשליחת טופס ההתחברות
         document.getElementById("loginForm").addEventListener(
             "submit",
             async function(event) {
 
+
+                // מונע מהטופס לרענן את הדף אוטומטית
                 event.preventDefault();
 
+
+                // יצירת אובייקט עם שם המשתמש והסיסמה שהוזנו
                 const user = {
-                    username: document.getElementById("username").value,
-                    password: document.getElementById("password").value
+
+                    username:
+                        document.getElementById("username").value,
+
+                    password:
+                        document.getElementById("password").value
                 };
 
-                const response = await fetch("http://localhost:3000/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(user)
-                });
 
+                // שליחת פרטי ההתחברות לשרת
+                const response =
+                    await fetch("http://localhost:3000/login", {
+
+                        // שליחת מידע לשרת
+                        method: "POST",
+
+                        // המידע שנשלח הוא בפורמט JSON
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        // הפיכת אובייקט המשתמש ל-JSON ושליחתו לשרת
+                        body: JSON.stringify(user)
+
+                    });
+
+
+                // אם השרת אישר שההתחברות הצליחה
                 if (response.ok) {
 
-                    const data = await response.json();
 
-                    localStorage.setItem("username", data.username);
-                    localStorage.setItem("role", data.role);
-                
-              
-                      window.location.href = "home.html";
-   
-                
-   
+                    // קבלת תשובת השרת כ-JSON
+                    const data =
+                        await response.json();
+
+
+                    // שמירת שם המשתמש ב-LocalStorage
+                    localStorage.setItem(
+                        "username",
+                        data.username
+                    );
+
+
+                    // שמירת התפקיד של המשתמש
+                    // לדוגמה: customer או admin
+                    localStorage.setItem(
+                        "role",
+                        data.role
+                    );
+
+
+                    // מעבר לדף הבית לאחר התחברות מוצלחת
+                    window.location.href =
+                        "home.html";
+
 
                 } else {
 
-                    alert("Invalid username or password");
+
+                    // אם שם המשתמש או הסיסמה לא נכונים
+                    alert(
+                        "Invalid username or password"
+                    );
 
                 }
+
             }
         );
+
     </script>
 
+
 </body>
+
 </html>

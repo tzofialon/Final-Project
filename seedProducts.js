@@ -1,3 +1,6 @@
+// קובץ Seed - משמש להכנסה חד-פעמית של כל 51 המוצרים ל-MongoDB.
+// לאחר הכנסת המוצרים, האתר שולף אותם ישירות ממסד הנתונים.
+
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
