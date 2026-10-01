@@ -454,8 +454,7 @@ async function seedProducts() {
     try {
 
         await mongoose.connect(
-            "mongodb+srv://yohananagosa092_db_user:yohananagosa9@cluster0.8bixhhu.mongodb.net/?appName=Cluster0",
-            {
+"mongodb+srv://yohananagosa092_db_user:yohananagosa9@cluster0.8bixhhu.mongodb.net/?appName=Cluster0",         {
                 dbName: "techgeek"
             }
         );

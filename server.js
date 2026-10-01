@@ -152,6 +152,102 @@ app.get("/products", async (req, res) => {
 });
 
 
+// ================================
+// UPDATE PRODUCT
+// ================================
+
+// עדכון מוצר קיים לפי productId
+app.put("/products/:productId", async (req, res) => {
+
+    try {
+
+        const productId = Number(req.params.productId);
+
+        const updatedProduct = await Product.findOneAndUpdate(
+            { productId: productId },
+            req.body,
+            { new: true }
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).send("Product not found");
+        }
+
+        res.json(updatedProduct);
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send("Error updating product");
+
+    }
+
+});
+
+
+// ================================
+// DELETE PRODUCT
+// ================================
+
+// מחיקת מוצר לפי productId
+app.delete("/products/:productId", async (req, res) => {
+
+    try {
+        const productId = Number(req.params.productId);
+
+        const deletedProduct = await Product.findOneAndDelete({
+            productId: productId
+        });
+
+        if (!deletedProduct) {
+            return res.status(404).send("Product not found");
+        }
+
+        res.send("Product deleted successfully");
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Error deleting product");
+    }
+
+});
+
+// ================================
+// AGGREGATION - MOST EXPENSIVE PRODUCT
+// ================================
+
+// מציאת המוצר היקר ביותר בכל קטגוריה
+app.get("/products/most-expensive-by-category", async (req, res) => {
+
+    try {
+
+        const result = await Product.aggregate([
+            {
+                $sort: { price: -1 }
+            },
+            {
+                $group: {
+                    _id: "$category",
+                    productName: { $first: "$name" },
+                    price: { $first: "$price" }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
+
+        res.json(result);
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send("Error getting aggregation");
+
+    }
+
+});
+
 
 // ================================
 // PRODUCT AGGREGATION / STATISTICS
@@ -365,8 +461,7 @@ app.get("/users", async (req, res) => {
 
 // חיבור למסד הנתונים MongoDB
 mongoose.connect(
-    "YOUR_MONGODB_CONNECTION_STRING",
-    {
+"mongodb+srv://yohananagosa092_db_user:yohananagosa9@cluster0.8bixhhu.mongodb.net/?appName=Cluster0",    {
         dbName: "techgeek"
     }
 )
