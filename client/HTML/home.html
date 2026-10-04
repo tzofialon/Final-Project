@@ -1,123 +1,257 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-  <title>TechGeek</title>
-  
-  <link rel="stylesheet" href="paycss2.css">
+    <title>TechGeek</title>
+
+    <!-- קובץ העיצוב של דף הבית -->
+    <link rel="stylesheet" href="paycss2.css">
 </head>
+
+
 <body class="home-page">
-  <header class="header">
-    
-    <h1>Welcome to TechGeek</h1>
-    <h2 id="welcome-user"></h2>
-    <p>A tech buff? You have come to the right place</p>
-    <a href="shopcart.html">
-      
-        <div style="position: absolute; top: 25px; right:25px;">
 
-          <img src="images/cssimages/sopping.jpeg"  style="width: 70px; height:70px;">
-          <span id="cart-count">0</span>
-      </div>
-  </a>
-  <div style="position: absolute; top: 25px; left:25px;">
-  <button onclick="logout()">Logout</button>
-  <a href="login.html">
-    <button>Login</button>
-  </a>
-  </div>
-  </header>
+    <header class="header">
 
-  <main class="main">
 
-    <div class="car-list1">
+        <!-- כפתור מעבר לדף המנהל -->
+        <!-- הכפתור מוסתר בהתחלה ויוצג רק אם המשתמש הוא admin -->
+        <button id="adminButton"
+                style="display: none;"
+                onclick="window.location.href='admin.html'">
+            Admin Dashboard
+        </button>
 
-      <div class="car-itemr">
-        <img src="images/Technological fashion/Technologicalfashion.jpg" alt="Technologicalfashion">
-        <h2>Technological fashion</h2>
-        <a href="Technologicalfashion.html">
-          <button>Buy Now</button>
-      </a>
-      </div>
 
-      <div class="car-itemr">
-        <img src="images/Equipment and accessories/Equipmentandaccessories.jpg" alt="Equipmentandaccessories">
-        <h2>Equipment and accessories</h2>
-        <a href="Equipmentandaccessories.html">
-          <button>Buy Now</button>
-      </a>
-      </div>
+        <h1>Welcome to TechGeek</h1>
 
-      <div class="car-itemr">
-        <img src="images/Design items for the home office/Designitemsforthehomeoffice.jpg" alt="Designitemshomeoffice">
-        <h2>Design items for the home office</h2>
-        <a href="Designhomeoffice.html">
-          <button>Buy Now</button>
-      </a>
-      </div>
+        <!-- כאן יוצג שם המשתמש המחובר -->
+        <h2 id="welcome-user"></h2>
 
-      <div class="car-itemr">
-        <img src="images/Advanced gadgets/Advancedgadgets.jpg" alt="Advancedgadgets">
-        <h2>Advanced gadgets</h2>
-        <br/>
-        
-        <a href="Advancedgadgets.html">
-          <button>Buy Now</button>
-      </a>
-      </div>
+        <p>A tech buff? You have come to the right place</p>
 
-      <div class="car-itemr">
-        <img src="images/Gifts and personal products/Giftsandpersonalproducts.jpg" alt="Giftsandpersonalproducts">
-        <h2>Gifts and personal products</h2>
-        <a href="Giftsandpersonalproducts.html">
-          <button>Buy Now</button>
-      </a>
-      </div>
 
-    </div>
-     </br>
-     </br>
-    </br>
-  </br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+        <!-- מעבר לסל הקניות -->
+        <a href="shopcart.html">
+
+            <div style="position: absolute; top: 25px; right: 25px;">
+
+                <img src="images/cssimages/sopping.jpeg"
+                     style="width: 70px; height: 70px;">
+
+                <!-- מספר המוצרים שנמצאים בסל -->
+                <span id="cart-count">0</span>
+
+            </div>
+
+        </a>
+
+
+        <!-- כפתורי התחברות והתנתקות -->
+        <div style="position: absolute; top: 25px; left: 25px;">
+
+            <!-- התנתקות מהמשתמש -->
+            <button onclick="logout()">Logout</button>
+
+            <!-- מעבר לדף ההתחברות -->
+            <a href="login.html">
+                <button>Login</button>
+            </a>
+
+        </div>
+
+    </header>
 
 
 
-<div class="video-container">
-  <h2>The AI revolution - Deep Learning</h2>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/EPJI8-VN5kk?si=yKj4b8sVoDs2v1Pk" frameborder="0" allowfullscreen></iframe>
-</div>
-<div class="recommendations">
-       <h2>User recommendations</h2>
-        <ul>
-          <li>"Excellent product! The service was excellent." - Yael</li>
-          <li>"The products helped me in my daily work." - Dani</li>
-          <li>"Very satisfied, highly recommend!" - Michal</li>
-          <li>"Fast and quality service, I recommend to anyone." - Ron</li>
-          <li>"Great experience, will definitely return to purchase again." - Sarit</li>
-        </ul>
-      </div>
-      <div class="contact-form">
-    <h2>Contact us</h2>
-    <form>
-        <label for="message">message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <br>
-        <button type="button" onclick="messageC()">send</button>
-    </form>
-  </div>
-  </main>
+    <main class="main">
 
-  <footer class="footer">
-    <p>© 2024 TechGeek. All rights reserved.</p>
-  </footer>
 
-  <script src="javaAll.js"></script>
+        <!-- רשימת הקטגוריות בחנות -->
+        <div class="car-list1">
+
+
+            <!-- קטגוריית אופנה טכנולוגית -->
+            <div class="car-itemr">
+
+                <img src="images/Technological fashion/Technologicalfashion.jpg"
+                     alt="Technological fashion">
+
+                <h2>Technological fashion</h2>
+
+                <!-- מעבר לעמוד הקטגוריה -->
+                <a href="Technologicalfashion.html">
+                    <button>Buy Now</button>
+                </a>
+
+            </div>
+
+
+
+            <!-- קטגוריית ציוד ואביזרים -->
+            <div class="car-itemr">
+
+                <img src="images/Equipment and accessories/Equipmentandaccessories.jpg"
+                     alt="Equipment and accessories">
+
+                <h2>Equipment and accessories</h2>
+
+                <!-- מעבר לעמוד הקטגוריה -->
+                <a href="Equipmentandaccessories.html">
+                    <button>Buy Now</button>
+                </a>
+
+            </div>
+
+
+
+            <!-- קטגוריית עיצוב למשרד הביתי -->
+            <div class="car-itemr">
+
+                <img src="images/Design items for the home office/Designitemsforthehomeoffice.jpg"
+                     alt="Design items for the home office">
+
+                <h2>Design items for the home office</h2>
+
+                <!-- מעבר לעמוד הקטגוריה -->
+                <a href="Designhomeoffice.html">
+                    <button>Buy Now</button>
+                </a>
+
+            </div>
+
+
+
+            <!-- קטגוריית גאדג'טים -->
+            <div class="car-itemr">
+
+                <img src="images/Advanced gadgets/Advancedgadgets.jpg"
+                     alt="Advanced gadgets">
+
+                <h2>Advanced gadgets</h2>
+
+                <!-- מעבר לעמוד הקטגוריה -->
+                <a href="Advancedgadgets.html">
+                    <button>Buy Now</button>
+                </a>
+
+            </div>
+
+
+
+            <!-- קטגוריית מתנות ומוצרים אישיים -->
+            <div class="car-itemr">
+
+                <img src="images/Gifts and personal products/Giftsandpersonalproducts.jpg"
+                     alt="Gifts and personal products">
+
+                <h2>Gifts and personal products</h2>
+
+                <!-- מעבר לעמוד הקטגוריה -->
+                <a href="Giftsandpersonalproducts.html">
+                    <button>Buy Now</button>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- סרטון -->
+        <div class="video-container">
+
+            <h2>The AI revolution - Deep Learning</h2>
+
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/EPJI8-VN5kk?si=yKj4b8sVoDs2v1Pk"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+
+        <!-- המלצות משתמשים -->
+        <div class="recommendations">
+
+            <h2>User recommendations</h2>
+
+            <ul>
+                <li>"Excellent product! The service was excellent." - Yael</li>
+                <li>"The products helped me in my daily work." - Dani</li>
+                <li>"Very satisfied, highly recommend!" - Michal</li>
+                <li>"Fast and quality service, I recommend to anyone." - Ron</li>
+                <li>"Great experience, will definitely return to purchase again." - Sarit</li>
+            </ul>
+
+        </div>
+
+
+
+        <!-- טופס יצירת קשר -->
+        <div class="contact-form">
+
+            <h2>Contact us</h2>
+
+            <form>
+
+                <label for="message">Message:</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    required>
+                </textarea>
+
+                <br>
+
+                <!-- הפעלת פונקציית שליחת ההודעה -->
+                <button type="submit" onclick="messageC()">
+                    Send
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- תחתית האתר -->
+    <footer class="footer">
+
+        <p>© 2024 TechGeek. All rights reserved.</p>
+
+    </footer>
+
+
+
+    <script>
+
+        // קבלת התפקיד של המשתמש המחובר מ-localStorage
+        const role = localStorage.getItem("role");
+
+
+        // אם המשתמש הוא מנהל
+        if (role === "admin") {
+
+            // הצגת כפתור Admin Dashboard
+            document.getElementById("adminButton").style.display = "block";
+
+        }
+
+    </script>
+
+
+    <!-- קובץ JavaScript שמכיל פונקציות כלליות של האתר -->
+    <script src="javaAll.js"></script>
+
+
 </body>
+
 </html>

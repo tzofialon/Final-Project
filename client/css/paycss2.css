@@ -21,6 +21,36 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* כפתור Admin Dashboard */
+#adminButton {
+    position: absolute;
+    top: 125px;
+    left: 25px;
+
+    padding: 12px 22px;
+
+    background: linear-gradient(135deg, #6a00ff, #00d9ff);
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+
+    z-index: 100;
+}
+
+
+/* אפקט כשעוברים עם העכבר */
+#adminButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 22px rgba(0, 217, 255, 0.8);
+}
 
 
 /* עיצוב כותרת */

@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 //חיבור למסד הנתונים
 connectDB();
-c
+
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
