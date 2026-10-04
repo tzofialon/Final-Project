@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | TechGeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="paycss2.css">
+</head>
+<body class="checkout-page">
+    <header class="checkout-header">
+        <a class="checkout-brand" href="home.html" aria-label="TechGeek home">
+            <span class="checkout-brand-mark" aria-hidden="true">T</span>
+            <span>TechGeek<span class="checkout-brand-period">.</span></span>
+        </a>
+        <div class="checkout-secure-label"><span aria-hidden="true">◇</span> Secure checkout</div>
+        <a class="checkout-back-link" href="shopcart.html"><span aria-hidden="true">←</span> Back to cart</a>
+    </header>
+
+    <main class="checkout-main">
+        <div class="checkout-heading">
+            <p class="checkout-eyebrow"><span></span> ALMOST YOURS</p>
+            <h1>Complete your order</h1>
+            <p>One last step before your next favorite thing arrives.</p>
+            <nav class="checkout-progress" aria-label="Checkout progress">
+                <a href="shopcart.html" class="checkout-progress-step is-complete"><span>✓</span> Cart</a>
+                <span class="checkout-progress-line is-complete" aria-hidden="true"></span>
+                <span class="checkout-progress-step is-current" aria-current="step"><span>02</span> Payment</span>
+                <span class="checkout-progress-line" aria-hidden="true"></span>
+                <span class="checkout-progress-step"><span>03</span> Complete</span>
+            </nav>
+        </div>
+
+        <div class="checkout-layout">
+            <section class="checkout-form-panel" aria-labelledby="payment-heading">
+                <div class="checkout-panel-heading">
+                    <span class="checkout-step">01</span>
+                    <div>
+                        <h2 id="payment-heading">Payment details</h2>
+                        <p>All transactions are protected with secure encryption.</p>
+                    </div>
+                </div>
+
+                <div class="payment-visual" aria-hidden="true">
+                    <div class="payment-visual-top">
+                        <span class="payment-chip"><i></i><i></i><i></i><i></i></span>
+                        <span class="payment-visual-mark">TG<span>.</span></span>
+                    </div>
+                    <div class="payment-visual-number">•••• &nbsp; •••• &nbsp; •••• &nbsp; ••••</div>
+                    <div class="payment-visual-bottom">
+                        <span class="payment-visual-holder">TECHGEEK MEMBER<small>SECURE PAYMENT</small></span>
+                        <span class="payment-visual-valid">VALID THRU<small>•• / ••</small></span>
+                        <span class="payment-orbit"><i></i><i></i></span>
+                    </div>
+                </div>
+
+                <form id="payment-form">
+                    <div class="form-group checkout-form-group">
+                        <label for="card-holder">Cardholder name</label>
+                        <input type="text" id="card-holder" name="card-holder" placeholder="Name as it appears on card" autocomplete="cc-name" required>
+                    </div>
+                    <div class="form-group checkout-form-group">
+                        <label for="card-number">Card number</label>
+                        <div class="checkout-input-wrap">
+                            <input type="text" id="card-number" name="card-number" maxlength="16" placeholder="1234 5678 9012 3456" autocomplete="cc-number" inputmode="numeric" required>
+                            <span aria-hidden="true">▦</span>
+                        </div>
+                    </div>
+                    <div class="checkout-form-row">
+                        <div class="form-group checkout-form-group">
+                            <label for="expiry-date">Expiry date</label>
+                            <input type="month" id="expiry-date" name="expiry-date" autocomplete="cc-exp" required>
+                        </div>
+                        <div class="form-group checkout-form-group">
+                            <label for="cvv">Security code</label>
+                            <input type="text" id="cvv" name="cvv" maxlength="3" placeholder="123" autocomplete="cc-csc" inputmode="numeric" required>
+                        </div>
+                    </div>
+                    <p class="checkout-form-note"><span aria-hidden="true">◇</span> Your payment information is encrypted and secure.</p>
+                    <button type="button" class="checkout-pay-button" onclick="validatePayment()">
+                        <span>Complete secure payment</span>
+                        <span aria-hidden="true">→</span>
+                    </button>
+                    <div class="checkout-trust-row" aria-label="Payment protections">
+                        <span><i aria-hidden="true">✓</i> Encrypted payment</span>
+                        <span><i aria-hidden="true">✓</i> Your data stays private</span>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="checkout-summary" aria-labelledby="checkout-summary-title">
+                <div class="checkout-summary-heading">
+                    <div>
+                        <p class="checkout-eyebrow">YOUR ORDER</p>
+                        <h2 id="checkout-summary-title">Order summary</h2>
+                    </div>
+                    <a href="shopcart.html">Edit</a>
+                </div>
+                <div id="checkoutItems" class="checkout-items" aria-live="polite"></div>
+                <div class="checkout-summary-rule"></div>
+                <p id="total-amount" class="checkout-summary-caption">Your order total</p>
+                <h2 id="totalDisplay" class="checkout-total"></h2>
+                <div class="checkout-summary-perks">
+                    <div><span aria-hidden="true">✓</span><span>Protected payment</span></div>
+                    <div><span aria-hidden="true">✓</span><span>Carefully packed, delivered with care</span></div>
+                </div>
+                <div class="checkout-summary-glow" aria-hidden="true"></div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="checkout-footer">
+        <a href="home.html">TechGeek<span>.</span></a>
+        <span>© 2024 TechGeek. All rights reserved.</span>
+    </footer>
+
+    <script src="javaAll.js"></script>
+</body>
+</html>

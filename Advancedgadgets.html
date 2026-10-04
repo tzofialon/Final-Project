@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced gadgets | TechGeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="Advanced gadgets category-page">
+    <header class="category-header">
+        <div class="category-header-inner">
+            <a class="category-brand" href="home.html" aria-label="TechGeek home">
+                <span class="category-brand-mark" aria-hidden="true">T</span>
+                <span>TechGeek<span class="category-brand-period">.</span></span>
+            </a>
+            <nav class="category-nav" aria-label="Shop categories">
+                <a href="Technologicalfashion.html">Fashion</a>
+                <a href="Equipmentandaccessories.html">Accessories</a>
+                <a href="Designhomeoffice.html">Workspace</a>
+                <a class="is-current" href="Advancedgadgets.html" aria-current="page">Gadgets</a>
+                <a href="Giftsandpersonalproducts.html">Gifts</a>
+            </nav>
+            <div class="category-actions">
+                <h2 id="welcome-user" class="category-welcome"></h2>
+                <button class="category-logout" type="button" onclick="logout()">Logout</button>
+                <a class="category-login" href="login.html">Login</a>
+                <a class="category-cart" href="shopcart.html" aria-label="Open shopping cart">
+                    <img src="images/cssimages/sopping.jpeg" alt="">
+                    <span>Cart</span>
+                    <span id="cart-count" class="category-cart-count">0</span>
+                </a>
+            </div>
+        </div>
+        <div class="category-banner">
+            <div>
+                <p class="category-eyebrow">Collection 04 / 05</p>
+                <h1>Advanced gadgets</h1>
+                <p>Smart ideas and useful technology, chosen to make everyday better.</p>
+            </div>
+            <span class="category-banner-index" aria-hidden="true">TECHGEEK / 04</span>
+        </div>
+    </header>
+
+    <main class="category-main">
+        <section class="filters category-filters" aria-label="Filter products by price">
+            <div class="category-filter-heading">
+                <p class="category-eyebrow">Find your fit</p>
+                <h2>Price range</h2>
+            </div>
+            <div class="category-filter-fields">
+                <label for="price-min">Min price
+                    <input type="number" id="price-min" placeholder="Minimum">
+                </label>
+                <label for="price-max">Max price
+                    <input type="number" id="price-max" placeholder="Maximum">
+                </label>
+                <button class="category-filter-button" type="button" onclick="filterCars()">Apply filter <span aria-hidden="true">→</span></button>
+            </div>
+        </section>
+        <section class="category-products" aria-label="Advanced gadgets products">
+            <div id="car-list" class="car-gallery"></div>
+        </section>
+    </main>
+
+    <footer class="footer category-footer">
+        <p>© 2024 TechGeek. All rights reserved.</p>
+    </footer>
+
+
+    <!-- פונקציות כלליות של האתר -->
+    <script src="javaAll.js"></script>
+
+
+    <script>
+        loadProductsFromLocal("Advanced gadgets");
+    </script>
+
+
+</body>
+
+</html>

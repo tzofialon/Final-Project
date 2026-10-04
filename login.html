@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | TechGeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="login-page auth-page auth-login">
+    <main class="auth-layout">
+        <section class="auth-visual" aria-label="TechGeek technology collection">
+            <a class="auth-brand" href="home.html" aria-label="TechGeek home">
+                <span class="auth-brand-mark" aria-hidden="true">T</span>
+                <span>TechGeek<span class="auth-brand-period">.</span></span>
+            </a>
+            <div class="auth-visual-copy">
+                <p class="auth-eyebrow">Thoughtful technology</p>
+                <h2>Good ideas.<br>Better everyday.</h2>
+                <p>Discover clever gear and considered essentials for the way you live and work.</p>
+            </div>
+            <p class="auth-visual-note">Curated for the curious <span aria-hidden="true">/</span> TechGeek</p>
+        </section>
+
+        <section class="auth-panel" aria-labelledby="auth-title">
+            <a class="auth-back-link" href="home.html"><span aria-hidden="true">←</span> Back to store</a>
+            <div class="auth-heading">
+                <p class="auth-eyebrow">Welcome back</p>
+                <h1 id="auth-title">Sign in to TechGeek</h1>
+                <p>Pick up where your next great find begins.</p>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <label for="username">User name</label>
+                <input type="text"
+                       id="username"
+                       required
+                       placeholder="Enter your username..."
+                       autocomplete="username">
+
+                <label for="password">Password</label>
+                <input type="password"
+                       id="password"
+                       required
+                       placeholder="Enter your password..."
+                       autocomplete="current-password">
+
+                <button type="submit" id="login-button" class="auth-submit">Login <span aria-hidden="true">→</span></button>
+            </form>
+
+            <p class="auth-switch">New to TechGeek? <a href="register.html">Create an account <span aria-hidden="true">↗</span></a></p>
+            <p class="auth-assurance"><span aria-hidden="true">●</span> Your details stay private and secure.</p>
+        </section>
+    </main>
+
+
+
+    <script>
+
+        // האזנה לשליחת טופס ההתחברות
+        document.getElementById("loginForm").addEventListener(
+            "submit",
+            async function(event) {
+
+
+                // מונע מהטופס לרענן את הדף אוטומטית
+                event.preventDefault();
+
+
+                // יצירת אובייקט עם שם המשתמש והסיסמה שהוזנו
+                const user = {
+
+                    username:
+                        document.getElementById("username").value,
+
+                    password:
+                        document.getElementById("password").value
+                };
+
+
+                // שליחת פרטי ההתחברות לשרת
+                const response =
+                    await fetch("http://localhost:3000/login", {
+
+                        // שליחת מידע לשרת
+                        method: "POST",
+
+                        // המידע שנשלח הוא בפורמט JSON
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        // הפיכת אובייקט המשתמש ל-JSON ושליחתו לשרת
+                        body: JSON.stringify(user)
+
+                    });
+
+
+                // אם השרת אישר שההתחברות הצליחה
+                if (response.ok) {
+
+
+                    // קבלת תשובת השרת כ-JSON
+                    const data =
+                        await response.json();
+
+
+                    // שמירת שם המשתמש ב-LocalStorage
+                    localStorage.setItem(
+                        "username",
+                        data.username
+                    );
+
+
+                    // שמירת התפקיד של המשתמש
+                    // לדוגמה: customer או admin
+                    localStorage.setItem(
+                        "role",
+                        data.role
+                    );
+
+
+                    // מעבר לדף הבית לאחר התחברות מוצלחת
+                    window.location.href =
+                        "home.html";
+
+
+                } else {
+
+
+                    // אם שם המשתמש או הסיסמה לא נכונים
+                    alert(
+                        "Invalid username or password"
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an account | TechGeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="paycss.css">
+</head>
+
+<body class="login-page auth-page auth-register">
+    <main class="auth-layout">
+        <section class="auth-visual" aria-label="TechGeek technology collection">
+            <a class="auth-brand" href="home.html" aria-label="TechGeek home">
+                <span class="auth-brand-mark" aria-hidden="true">T</span>
+                <span>TechGeek<span class="auth-brand-period">.</span></span>
+            </a>
+            <div class="auth-visual-copy">
+                <p class="auth-eyebrow">A little more curious</p>
+                <h2>Make space<br>for better tech.</h2>
+                <p>Find useful ideas, thoughtful design and a few things you didn't know you needed.</p>
+            </div>
+            <p class="auth-visual-note">Small upgrades, big delight <span aria-hidden="true">/</span> TechGeek</p>
+        </section>
+
+        <section class="auth-panel" aria-labelledby="auth-title">
+            <a class="auth-back-link" href="home.html"><span aria-hidden="true">←</span> Back to store</a>
+            <div class="auth-heading">
+                <p class="auth-eyebrow">Join the curious</p>
+                <h1 id="auth-title">Create your account</h1>
+                <p>Set up your TechGeek account and find your next favorite.</p>
+            </div>
+
+            <form id="registerForm" class="auth-form">
+                <label for="username">User name</label>
+                <input type="text"
+                       id="username"
+                       required
+                       autocomplete="username">
+
+                <label for="email">Email</label>
+                <input type="email"
+                       id="email"
+                       required
+                       autocomplete="email">
+
+                <label for="password">Password</label>
+                <input type="password"
+                       id="password"
+                       required
+                       autocomplete="new-password">
+
+                <button type="submit" class="auth-submit">Create account <span aria-hidden="true">→</span></button>
+            </form>
+
+            <p class="auth-switch">Already have an account? <a href="login.html">Sign in <span aria-hidden="true">↗</span></a></p>
+            <p class="auth-assurance"><span aria-hidden="true">●</span> Your details stay private and secure.</p>
+        </section>
+    </main>
+
+
+    <script>
+
+        // האזנה לשליחת טופס ההרשמה
+        document.getElementById("registerForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+
+                    // מונע מהדף להתרענן אוטומטית
+                    event.preventDefault();
+
+
+                    // שמירת הפרטים שהוזנו באובייקט
+                    // כדי לשלוח אותם לשרת
+                    const user = {
+
+                        username:
+                            document.getElementById("username").value,
+
+                        email:
+                            document.getElementById("email").value,
+
+                        password:
+                            document.getElementById("password").value
+                    };
+
+
+                    // שליחת פרטי המשתמש החדש לשרת
+                    const response =
+                        await fetch(
+                            "http://localhost:3000/register",
+                            {
+
+                                // POST = שליחת מידע לשרת
+                                method: "POST",
+
+                                // המידע נשלח בפורמט JSON
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+
+                                // המרת האובייקט ל-JSON ושליחתו
+                                body: JSON.stringify(user)
+                            }
+                        );
+
+
+                    // קבלת התשובה מהשרת כטקסט
+                    const message =
+                        await response.text();
+
+
+                    // הצגת תשובת השרת למשתמש
+                    alert(message);
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
