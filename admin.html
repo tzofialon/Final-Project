@@ -7,6 +7,56 @@
 
     <!-- קובץ העיצוב של האתר -->
     <link rel="stylesheet" href="paycss.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .admin-statistics {
+            width: 90%;
+            max-width: 1200px;
+            margin: 32px auto;
+        }
+
+        .admin-statistics h2 {
+            color: #a32dc1;
+            text-align: center;
+        }
+
+        .admin-chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .admin-chart-card {
+            min-width: 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+        }
+
+        .admin-chart-card h3 {
+            margin: 0 0 16px;
+            color: #29293d;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .admin-chart {
+            position: relative;
+            height: 320px;
+        }
+
+        #statisticsError {
+            color: #ffb3b3;
+            text-align: center;
+        }
+
+        @media (max-width: 760px) {
+            .admin-chart-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -32,8 +82,109 @@
 
     </table>
 
+    <section class="admin-statistics" aria-label="Product statistics">
+        <h2>Product Statistics</h2>
+        <p id="statisticsError" role="alert" hidden></p>
+        <div class="admin-chart-grid">
+            <article class="admin-chart-card">
+                <h3>Product Count by Category</h3>
+                <div class="admin-chart">
+                    <canvas id="productCountChart" aria-label="Bar chart showing product count by category" role="img"></canvas>
+                </div>
+            </article>
+            <article class="admin-chart-card">
+                <h3>Average Product Price by Category</h3>
+                <div class="admin-chart">
+                    <canvas id="averagePriceChart" aria-label="Bar chart showing average product price by category" role="img"></canvas>
+                </div>
+            </article>
+        </div>
+    </section>
+
 
     <script>
+
+        async function loadProductCharts() {
+            const errorElement = document.getElementById("statisticsError");
+
+            try {
+                const response = await fetch("http://localhost:3000/products/stats");
+                if (!response.ok) {
+                    throw new Error("Statistics request failed.");
+                }
+
+                const statistics = await response.json();
+                if (!Array.isArray(statistics.byCategory)) {
+                    throw new Error("Statistics response is missing category data.");
+                }
+
+                const categories = statistics.byCategory;
+                const labels = categories.map(category => category._id);
+
+                new Chart(document.getElementById("productCountChart"), {
+                    type: "bar",
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: "Products",
+                            data: categories.map(category => category.numberOfProducts),
+                            backgroundColor: "rgba(0, 217, 255, 0.72)",
+                            borderColor: "#0078D4",
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: { precision: 0 }
+                            }
+                        }
+                    }
+                });
+
+                new Chart(document.getElementById("averagePriceChart"), {
+                    type: "bar",
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: "Average price (₪)",
+                            data: categories.map(category => category.averagePrice),
+                            backgroundColor: "rgba(206, 24, 206, 0.68)",
+                            borderColor: "#a32dc1",
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: value => Number(value).toFixed(2)
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: context => `${context.dataset.label}: ${Number(context.raw).toFixed(2)} ₪`
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Unable to load product statistics:", error);
+                errorElement.textContent = "Product statistics could not be loaded. Please try again later.";
+                errorElement.hidden = false;
+            }
+        }
 
         // פונקציה שטוענת את המשתמשים ובודקת הרשאת מנהל
         async function loadUsers() {
@@ -96,6 +247,7 @@
 
             });
 
+            loadProductCharts();
         }
 
 

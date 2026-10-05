@@ -23,7 +23,21 @@ app.use(cors());
 app.use(express.json());
 
 // מאפשר לשרת להציג את קבצי האתר
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, {
+    setHeaders(res, filePath) {
+        if (
+            process.env.NODE_ENV !== "production" &&
+            /\.(html|css|js)$/i.test(filePath)
+        ) {
+            res.setHeader(
+                "Cache-Control",
+                "no-cache, max-age=0, must-revalidate"
+            );
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
+        }
+    }
+}));
 
 
 

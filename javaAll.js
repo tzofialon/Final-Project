@@ -24,6 +24,15 @@ function saveInventory() {
 // מערך שמכיל את המוצרים שנמצאים בעגלה
 let cart = [];
 
+function isGuestUser() {
+    const username = localStorage.getItem("username");
+    const role = localStorage.getItem("role");
+
+    return !username ||
+        username === "Guest" ||
+        (role !== "customer" && role !== "admin");
+}
+
 
 // שמירת העגלה ב-LocalStorage
 function saveCart() {
@@ -95,6 +104,11 @@ function updateInventoryDisplay() {
 // הוספת מוצר לעגלה
 function addToCart(carId, carName, carPrice, carImage) {
 
+    if (isGuestUser()) {
+        alert("Please log in or register before shopping.");
+        return;
+    }
+
     // בודקים שיש עדיין מוצר במלאי
     if (inventory[carId] > 0) {
 
@@ -143,6 +157,11 @@ function addToCart(carId, carName, carPrice, carImage) {
 
 // הסרת מוצר מהעגלה
 function removeFromCart(carId) {
+
+    if (isGuestUser()) {
+        alert("Please log in or register before shopping.");
+        return;
+    }
 
     // מציאת המוצר בעגלה
     const index =
@@ -280,6 +299,11 @@ function updateCart() {
 // הגדלת כמות של מוצר בעגלה
 function increaseQuantity(carId) {
 
+    if (isGuestUser()) {
+        alert("Please log in or register before shopping.");
+        return;
+    }
+
     if (inventory[carId] > 0) {
 
         addToCart(carId);
@@ -293,6 +317,11 @@ function increaseQuantity(carId) {
 
 // הקטנת כמות של מוצר בעגלה
 function decreaseQuantity(carId) {
+
+    if (isGuestUser()) {
+        alert("Please log in or register before shopping.");
+        return;
+    }
 
     // חיפוש המוצר בעגלה
     const item =
@@ -404,6 +433,12 @@ function filterCars() {
 
 // בדיקת פרטי התשלום
 function validatePayment() {
+
+    if (isGuestUser()) {
+        alert("Please log in or register to complete checkout.");
+        window.location.href = "login.html";
+        return;
+    }
 
     // קבלת מספר הכרטיס והסרת רווחים
     const cardNumber =
@@ -668,6 +703,16 @@ function loadTotal() {
     const checkoutItems =
         document.getElementById("checkoutItems");
 
+    if (!checkoutItems && !totalDisplay) {
+        return;
+    }
+
+    if (isGuestUser()) {
+        alert("Please log in or register to continue to checkout.");
+        window.location.href = "login.html";
+        return;
+    }
+
     if (checkoutItems) {
         const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
         checkoutItems.innerHTML = "";
@@ -739,6 +784,7 @@ function logout() {
         'username',
         'Guest'
     );
+    localStorage.removeItem('role');
 
 
     // עדכון שם המשתמש שמוצג באתר
