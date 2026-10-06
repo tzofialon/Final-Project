@@ -57,6 +57,14 @@
                 </div>
 
                 <form id="payment-form">
+                    <div class="form-group checkout-form-group address-autocomplete">
+                        <label for="delivery-address">Delivery Address</label>
+                        <div class="address-autocomplete-control">
+                            <input type="text" id="delivery-address" name="delivery-address" placeholder="Start typing your Israeli address" autocomplete="street-address" aria-autocomplete="list" aria-controls="delivery-address-suggestions" aria-expanded="false" required>
+                            <ul class="address-suggestions" id="delivery-address-suggestions" role="listbox" aria-label="Address suggestions" hidden></ul>
+                        </div>
+                        <p class="address-status" id="delivery-address-status" role="status" aria-live="polite"></p>
+                    </div>
                     <div class="form-group checkout-form-group">
                         <label for="card-holder">Cardholder name</label>
                         <input type="text" id="card-holder" name="card-holder" placeholder="Name as it appears on card" autocomplete="cc-name" required>

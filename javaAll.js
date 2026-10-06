@@ -440,6 +440,15 @@ function validatePayment() {
         return;
     }
 
+    const deliveryAddress =
+        document.getElementById("delivery-address").value.trim();
+
+    if (!deliveryAddress) {
+        alert("Please enter a delivery address.");
+        document.getElementById("delivery-address").focus();
+        return;
+    }
+
     // קבלת מספר הכרטיס והסרת רווחים
     const cardNumber =
         document.getElementById("card-number")
@@ -1206,4 +1215,252 @@ function loadProductsFromLocal(category) {
             </div>
         `;
     });
+
+    addUsdEstimates(productList, products);
 }
+
+async function addUsdEstimates(productList, products) {
+    try {
+        const response = await fetch(
+            "https://api.frankfurter.dev/v2/rate/ils/usd"
+        );
+
+        if (!response.ok) {
+            throw new Error(`Currency API returned status ${response.status}`);
+        }
+
+        const exchangeData = await response.json();
+        const exchangeRate = exchangeData.rate;
+
+        if (
+            exchangeData.base !== "ILS" ||
+            exchangeData.quote !== "USD" ||
+            !Number.isFinite(exchangeRate) ||
+            exchangeRate <= 0
+        ) {
+            throw new Error("Currency API returned an invalid ILS/USD rate");
+        }
+
+        products.forEach((product, index) => {
+            const productCard = productList.children[index];
+            const ilsPrice = productCard.querySelector("p:nth-of-type(2)");
+            const usdEstimate = document.createElement("p");
+
+            usdEstimate.textContent =
+                `Approx. $${(product.price * exchangeRate).toFixed(2)} USD`;
+            ilsPrice.insertAdjacentElement("afterend", usdEstimate);
+        });
+    } catch (error) {
+        console.warn(
+            "Unable to load USD estimates; showing ILS prices only.",
+            error
+        );
+    }
+}
+
+function initializeAddressAutocomplete() {
+    const addressInput = document.getElementById("delivery-address");
+    const suggestionsList = document.getElementById(
+        "delivery-address-suggestions"
+    );
+    const status = document.getElementById("delivery-address-status");
+
+    if (!addressInput || !suggestionsList || !status) {
+        return;
+    }
+
+    let debounceTimer;
+    let activeRequest;
+    let requestVersion = 0;
+    let activeOptionIndex = -1;
+    const resultCache = new Map();
+
+    const closeSuggestions = () => {
+        suggestionsList.hidden = true;
+        addressInput.setAttribute("aria-expanded", "false");
+        addressInput.removeAttribute("aria-activedescendant");
+        activeOptionIndex = -1;
+    };
+
+    const setActiveOption = index => {
+        const options = suggestionsList.querySelectorAll('[role="option"]');
+
+        if (!options.length) {
+            return;
+        }
+
+        activeOptionIndex = (index + options.length) % options.length;
+        options.forEach((option, optionIndex) => {
+            const isActive = optionIndex === activeOptionIndex;
+            option.setAttribute("aria-selected", String(isActive));
+            if (isActive) {
+                addressInput.setAttribute("aria-activedescendant", option.id);
+                option.scrollIntoView({ block: "nearest" });
+            }
+        });
+    };
+
+    const selectAddress = address => {
+        addressInput.value = address;
+        closeSuggestions();
+        status.textContent = "";
+        addressInput.focus();
+    };
+
+    const formatAddress = properties => {
+        const textValue = value =>
+            typeof value === "string" ? value.trim() : "";
+        const street = textValue(properties.street);
+        const houseNumber = textValue(properties.housenumber);
+        const streetAddress = [street, houseNumber].filter(Boolean).join(" ");
+        const city = textValue(
+            properties.city ||
+            properties.town ||
+            properties.village ||
+            properties.locality
+        );
+        const country = textValue(properties.country);
+
+        if (!streetAddress && !city) {
+            return "";
+        }
+
+        return [streetAddress, city, country].filter(Boolean).join(", ");
+    };
+
+    const showSuggestions = features => {
+        suggestionsList.replaceChildren();
+        const suggestions = features
+            .map(feature => formatAddress(feature.properties || {}))
+            .filter(Boolean)
+            .slice(0, 5);
+
+        if (!suggestions.length) {
+            closeSuggestions();
+            status.textContent = "No matching addresses. You can enter it manually.";
+            return;
+        }
+
+        suggestions.forEach((address, index) => {
+            const option = document.createElement("li");
+            const button = document.createElement("button");
+            option.setAttribute("role", "option");
+            option.id = `delivery-address-option-${index}`;
+            option.setAttribute("aria-selected", "false");
+            button.type = "button";
+            button.textContent = address;
+            button.addEventListener("click", () => selectAddress(address));
+            option.appendChild(button);
+            suggestionsList.appendChild(option);
+        });
+
+        suggestionsList.hidden = false;
+        addressInput.setAttribute("aria-expanded", "true");
+        addressInput.removeAttribute("aria-activedescendant");
+        status.textContent = "";
+        activeOptionIndex = -1;
+    };
+
+    addressInput.addEventListener("input", () => {
+        window.clearTimeout(debounceTimer);
+        requestVersion++;
+        const currentVersion = requestVersion;
+        const query = addressInput.value.trim();
+        activeRequest?.abort();
+        activeRequest = null;
+        suggestionsList.replaceChildren();
+        closeSuggestions();
+
+        if (query.length < 3) {
+            status.textContent = "";
+            return;
+        }
+
+        const cacheKey = query.toLocaleLowerCase();
+        if (resultCache.has(cacheKey)) {
+            status.textContent = "";
+            showSuggestions(resultCache.get(cacheKey));
+            return;
+        }
+
+        status.textContent = "Searching addresses…";
+        debounceTimer = window.setTimeout(async () => {
+            const controller = new AbortController();
+            activeRequest = controller;
+            const parameters = new URLSearchParams({
+                q: query,
+                limit: "5",
+                countrycode: "IL",
+                lang: "en"
+            });
+
+            try {
+                const response = await fetch(
+                    `https://photon.komoot.io/api/?${parameters}`,
+                    { signal: controller.signal }
+                );
+                if (!response.ok) {
+                    throw new Error(
+                        `Photon returned status ${response.status}`
+                    );
+                }
+
+                const data = await response.json();
+                if (
+                    currentVersion !== requestVersion ||
+                    query !== addressInput.value.trim()
+                ) {
+                    return;
+                }
+
+                const features = Array.isArray(data.features)
+                    ? data.features
+                    : [];
+                resultCache.set(cacheKey, features);
+                if (resultCache.size > 20) {
+                    resultCache.delete(resultCache.keys().next().value);
+                }
+                showSuggestions(features);
+            } catch (error) {
+                if (error.name !== "AbortError" && currentVersion === requestVersion) {
+                    closeSuggestions();
+                    status.textContent =
+                        "Address suggestions are unavailable. You can enter it manually.";
+                    console.warn("Address suggestions could not be loaded.", error);
+                }
+            } finally {
+                if (currentVersion === requestVersion) {
+                    activeRequest = null;
+                }
+            }
+        }, 350);
+    });
+
+    addressInput.addEventListener("keydown", event => {
+        const options = suggestionsList.querySelectorAll('[role="option"]');
+        if (event.key === "ArrowDown" && options.length) {
+            event.preventDefault();
+            setActiveOption(activeOptionIndex + 1);
+        } else if (event.key === "ArrowUp" && options.length) {
+            event.preventDefault();
+            setActiveOption(
+                activeOptionIndex < 0 ? options.length - 1 : activeOptionIndex - 1
+            );
+        } else if (
+            event.key === "Enter" &&
+            activeOptionIndex >= 0 &&
+            options[activeOptionIndex]
+        ) {
+            event.preventDefault();
+            options[activeOptionIndex].querySelector("button").click();
+        } else if (event.key === "Escape") {
+            closeSuggestions();
+        }
+    });
+
+    addressInput.addEventListener("blur", () => {
+        window.setTimeout(closeSuggestions, 120);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initializeAddressAutocomplete);

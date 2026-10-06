@@ -1705,6 +1705,72 @@ body.checkout-page .checkout-form-group input:focus {
     box-shadow: 0 0 0 4px rgba(47, 181, 166, 0.12);
 }
 
+body.checkout-page .address-autocomplete {
+    position: relative;
+    z-index: 5;
+}
+
+body.checkout-page .address-autocomplete-control {
+    position: relative;
+}
+
+body.checkout-page .address-suggestions {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 6px);
+    right: 0;
+    left: 0;
+    max-height: 240px;
+    margin: 0;
+    padding: 5px;
+    overflow-y: auto;
+    border: 1px solid #dce9e5;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 14px 32px rgba(28, 76, 68, 0.16);
+    list-style: none;
+}
+
+body.checkout-page .address-suggestions[hidden] {
+    display: none;
+}
+
+body.checkout-page .address-suggestions li {
+    margin: 0;
+    padding: 0;
+}
+
+body.checkout-page .address-suggestions button {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+    border: 0;
+    border-radius: 7px;
+    color: #29443e;
+    background: transparent;
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.45;
+    text-align: left;
+    cursor: pointer;
+}
+
+body.checkout-page .address-suggestions button:hover,
+body.checkout-page .address-suggestions button:focus-visible,
+body.checkout-page .address-suggestions [aria-selected="true"] button {
+    outline: none;
+    color: #145e56;
+    background: #edf8f5;
+}
+
+body.checkout-page .address-status {
+    min-height: 15px;
+    margin: 6px 1px 0;
+    color: #82918c;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
 body.checkout-page .checkout-input-wrap {
     position: relative;
 }
