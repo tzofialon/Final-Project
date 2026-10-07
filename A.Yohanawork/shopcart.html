@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | TechGeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="paycss.css">
+</head>
+<body class="shopping-cart-page">
+    <header class="cart-header">
+        <div class="cart-header-inner">
+            <a class="cart-brand" href="home.html" aria-label="TechGeek home">
+                <span class="cart-brand-mark" aria-hidden="true">T</span>
+                <span>TechGeek<span class="cart-brand-period">.</span></span>
+            </a>
+            <nav class="cart-header-links" aria-label="Cart navigation">
+                <a href="home.html">Continue shopping</a>
+                <a href="login.html">Login</a>
+            </nav>
+            <div class="cart-account">
+                <h2 id="welcome-user"></h2>
+                <button class="cart-logout" type="button" onclick="logout()">Logout</button>
+                <a class="cart-count-link" href="shopcart.html" aria-label="Shopping cart">
+                    <span aria-hidden="true">Cart</span>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-main">
+        <div class="cart-page-heading">
+            <div class="cart-hero-copy">
+                <p class="cart-eyebrow"><span></span> YOUR SELECTION <i>—</i> TECHGEEK / 01</p>
+                <h1>Your Cart<span>.</span></h1>
+                <p class="cart-subtitle">Considered technology, gathered in one place.<br>Everything you need for a smarter everyday.</p>
+                <a class="cart-hero-shopping-link" href="home.html"><span aria-hidden="true">←</span> Continue shopping</a>
+            </div>
+            <div class="cart-hero-art" aria-hidden="true">
+                <div class="cart-hero-orbit cart-hero-orbit-outer"></div>
+                <div class="cart-hero-orbit cart-hero-orbit-inner"></div>
+                <div class="cart-hero-core"><span>T</span><i></i></div>
+                <div class="cart-hero-coordinate">TG / 24<span>SMART LIVING SYSTEM</span></div>
+                <div class="cart-hero-signal"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+        </div>
+
+        <div class="cart-layout">
+            <section id="cart-content" class="cart-items-panel" aria-label="Items in your cart" hidden>
+                <div class="cart-items-heading">
+                    <div>
+                        <h2>Your items</h2>
+                        <p>Review your selection before checkout.</p>
+                    </div>
+                    <a href="home.html">Keep exploring <span aria-hidden="true">↗</span></a>
+                </div>
+                <div id="cartTableD" class="cart-table-wrap">
+                    <table id="cartTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Item total</th>
+                                <th scope="col"><span class="visually-hidden">Remove</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartItems"></tbody>
+                    </table>
+                </div>
+                <div class="cart-trust-strip" aria-label="Shopping benefits">
+                    <div><span aria-hidden="true">◇</span><span><strong>Secure payment</strong><small>Protected at every step</small></span></div>
+                    <div><span aria-hidden="true">↗</span><span><strong>Fast delivery</strong><small>Carefully packed for you</small></span></div>
+                    <div><span aria-hidden="true">↺</span><span><strong>Easy returns</strong><small>Shop with confidence</small></span></div>
+                </div>
+            </section>
+
+            <section id="cart-empty" class="cart-empty-state" aria-labelledby="cart-empty-title">
+                <div class="cart-empty-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M9 15h30l-3 25H12L9 15Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="M17 18V12a7 7 0 0 1 14 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M19 27h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <p class="cart-eyebrow">A little room for something brilliant</p>
+                <h2 id="cart-empty-title">Your cart is waiting</h2>
+                <p>Explore thoughtful tech and find the piece that fits your everyday.</p>
+                <a class="cart-primary-button" href="home.html">Explore the collection <span aria-hidden="true">→</span></a>
+            </section>
+
+            <aside class="cart-summary" aria-labelledby="cart-summary-title">
+                <div class="summary-topline">
+                    <span class="summary-status-dot" aria-hidden="true"></span>
+                    SECURE CHECKOUT
+                </div>
+                <h2 id="cart-summary-title">Order summary</h2>
+                <p class="summary-description">A quick look at your order.</p>
+                <div class="summary-divider"></div>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="totalPrice">₪0</span>
+                </div>
+                <div class="summary-row summary-shipping">
+                    <span>Shipping</span>
+                    <span>Free on orders over ₪500</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="cart-summary-total">₪0</span>
+                </div>
+                <a class="cart-checkout-button" href="propay.html">
+                    Proceed to Checkout <span aria-hidden="true">→</span>
+                </a>
+                <div class="summary-assurance">
+                    <span aria-hidden="true">◇</span>
+                    <span>Protected checkout<br><small>Your details stay private and secure.</small></span>
+                </div>
+                <a class="summary-back-link" href="home.html">← Continue shopping</a>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="cart-footer">
+        <a class="cart-footer-brand" href="home.html">TechGeek<span>.</span></a>
+        <p>Thoughtful tech for the way you live.</p>
+        <span>© 2024 TechGeek. All rights reserved.</span>
+    </footer>
+
+    <script src="javaAll.js"></script>
+</body>
+</html>

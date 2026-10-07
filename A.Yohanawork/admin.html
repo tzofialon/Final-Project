@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Admin - TechGeek</title>
+
+    <!-- קובץ העיצוב של האתר -->
+    <link rel="stylesheet" href="paycss.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+    <h1>Admin Dashboard</h1>
+
+    <h2>Registered Users</h2>
+
+
+    <!-- טבלה להצגת המשתמשים הרשומים -->
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+
+        <!-- לכאן ייכנסו המשתמשים שנקבל מהשרת -->
+        <tbody id="usersTable"></tbody>
+
+    </table>
+
+    <section class="admin-statistics" aria-label="Product statistics">
+        <h2>Product Statistics</h2>
+        <p id="statisticsError" role="alert" hidden></p>
+        <div class="admin-chart-grid">
+            <article class="admin-chart-card">
+                <h3>Product Count by Category</h3>
+                <div class="admin-chart">
+                    <canvas id="productCountChart" aria-label="Bar chart showing product count by category" role="img"></canvas>
+                </div>
+            </article>
+            <article class="admin-chart-card">
+                <h3>Average Product Price by Category</h3>
+                <div class="admin-chart">
+                    <canvas id="averagePriceChart" aria-label="Bar chart showing average product price by category" role="img"></canvas>
+                </div>
+            </article>
+        </div>
+    </section>
+<h2>Orders - Newest First</h2>
+<table id="ordersTable">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Total</th>
+            <th>Order Date</th>
+        </tr>
+    </thead>
+
+    <tbody id="ordersTableBody">
+    </tbody>
+</table>
+
+<h2>Most Expensive Product by Category</h2>
+<table id="expensiveProductsTable">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    <tbody id="expensiveProductsTableBody">
+    </tbody>
+</table>
+
+<script src="admin.js"></script>
+</body>
+
+</html>

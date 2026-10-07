@@ -1,0 +1,83 @@
+
+
+        // האזנה לשליחת טופס ההתחברות
+        document.getElementById("loginForm").addEventListener(
+            "submit",
+            async function(event) {
+
+
+                // מונע מהטופס לרענן את הדף אוטומטית
+                event.preventDefault();
+
+
+                // יצירת אובייקט עם שם המשתמש והסיסמה שהוזנו
+                const user = {
+
+                    username:
+                        document.getElementById("username").value,
+
+                    password:
+                        document.getElementById("password").value
+                };
+
+
+                // שליחת פרטי ההתחברות לשרת
+                const response =
+                    await fetch("http://localhost:3000/login", {
+
+                        // שליחת מידע לשרת
+                        method: "POST",
+
+                        // המידע שנשלח הוא בפורמט JSON
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        // הפיכת אובייקט המשתמש ל-JSON ושליחתו לשרת
+                        body: JSON.stringify(user)
+
+                    });
+
+
+                // אם השרת אישר שההתחברות הצליחה
+                if (response.ok) {
+
+
+                    // קבלת תשובת השרת כ-JSON
+                    const data =
+                        await response.json();
+
+
+                    // שמירת שם המשתמש ב-LocalStorage
+                    localStorage.setItem(
+                        "username",
+                        data.username
+                    );
+
+
+                    // שמירת התפקיד של המשתמש
+                    // לדוגמה: customer או admin
+                    localStorage.setItem(
+                        "role",
+                        data.role
+                    );
+
+
+                    // מעבר לדף הבית לאחר התחברות מוצלחת
+                    window.location.href =
+                        "home.html";
+
+
+                } else {
+
+
+                    // אם שם המשתמש או הסיסמה לא נכונים
+                    alert(
+                        "Invalid username or password"
+                    );
+
+                }
+
+            }
+        );
+
