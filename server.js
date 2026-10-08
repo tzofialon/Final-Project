@@ -12,6 +12,20 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 
+/*
+// ייבוא מודל המשתמש מתיקיית models
+const User = require("./server/models/User");
+
+// ייבוא מודל המוצר מתיקיית models
+const Product = require("./server/models/Product");
+*/
+
+// ייבוא הנתיבים של המשתמשים
+const userRoutes = require("./server/routes/userRoutes");
+
+// ייבוא הנתיבים של המוצרים
+const productRoutes = require("./server/routes/productRoutes");
+
 // יצירת שרת Express
 const app = express();
 
@@ -25,90 +39,22 @@ app.use(express.json());
 // מאפשר לשרת להציג את קבצי האתר
 app.use(express.static(__dirname));
 
-
-
 // ================================
-// USER SCHEMA
+// ROUTES - חיבור הנתיבים לשרת
 // ================================
 
-// מגדיר את המבנה של משתמש ב-MongoDB
-const userSchema = new mongoose.Schema({
+// כל בקשה שמתחילה ב-/users
+// תטופל דרך userRoutes
+app.use("/users", userRoutes);
 
-    username: String,
-
-    email: String,
-
-    password: String,
-
-    // סוג המשתמש - מנהל או לקוח
-    role: {
-        type: String,
-        default: "customer"
-    }
-});
-
-
-// יצירת מודל User שבעזרתו עובדים מול MongoDB
-const User = mongoose.model("User", userSchema);
+// כל בקשה שמתחילה ב-/products
+// תטופל דרך productRoutes
+app.use("/products", productRoutes);
 
 
 
-// ================================
-// PRODUCT SCHEMA
-// ================================
 
-// מגדיר את המבנה של מוצר ב-MongoDB
-const productSchema = new mongoose.Schema({
-
-    productId: Number,
-
-    name: String,
-
-    price: Number,
-
-    category: String,
-
-    description: String,
-
-    image: String
-});
-
-
-// יצירת מודל Product שבעזרתו עובדים עם המוצרים ב-MongoDB
-const Product = mongoose.model("Product", productSchema);
-
-
-
-// ================================
-// REGISTER
-// ================================
-
-// מקבל פרטי הרשמה מה-Frontend ושומר משתמש חדש
-app.post("/register", async (req, res) => {
-
-    try {
-
-        // יצירת משתמש חדש מהפרטים שהגיעו מהטופס
-        const user = new User(req.body);
-
-        // שמירת המשתמש ב-MongoDB
-        await user.save();
-
-        // תשובה ל-Frontend אם ההרשמה הצליחה
-        res.send("User registered successfully");
-
-    } catch (error) {
-
-        console.log(error);
-
-        // תשובה במקרה של שגיאה
-        res.status(500).send("Error registering user");
-    }
-
-});
-
-
-
+/*
 // ================================
 // GET PRODUCTS
 // ================================
@@ -183,8 +129,9 @@ app.put("/products/:productId", async (req, res) => {
     }
 
 });
+*/
 
-
+/*
 // ================================
 // DELETE PRODUCT
 // ================================
@@ -211,7 +158,8 @@ app.delete("/products/:productId", async (req, res) => {
     }
 
 });
-
+*/
+/*
 // ================================
 // AGGREGATION - MOST EXPENSIVE PRODUCT
 // ================================
@@ -247,8 +195,9 @@ app.get("/products/most-expensive-by-category", async (req, res) => {
     }
 
 });
+*/
 
-
+/*
 // ================================
 // PRODUCT AGGREGATION / STATISTICS
 // ================================
@@ -345,8 +294,8 @@ app.get("/products/stats", async (req, res) => {
 
 });
 
-
-
+*/
+/*
 // ================================
 // LOGIN
 // ================================
@@ -397,8 +346,9 @@ app.post("/login", async (req, res) => {
 
 });
 
+*/
 
-
+/*
 // ================================
 // GET USERS - ADMIN ONLY
 // ================================
@@ -453,7 +403,7 @@ app.get("/users", async (req, res) => {
 
 });
 
-
+*/
 
 // ================================
 // MONGODB CONNECTION

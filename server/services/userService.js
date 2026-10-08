@@ -1,35 +1,71 @@
 const User = require('../models/User');
 
-const getAllUsers = async () => {
-  return await User.find();
-};
 
-const getUserById = async (id) => {
-  return await User.findById(id);
-};
+// ========================================
+// REGISTER
+// ========================================
 
+// יצירת משתמש חדש ושמירה ב-MongoDB
 const createUser = async (userData) => {
-  const { username, phone, email } = userData;
-  return await User.create({ username, phone, email });
+
+    const user = new User(userData);
+
+    await user.save();
+
 };
 
-const getUserByEmail = async (email) => {
-  return await User.findOne({ email });
+
+// ========================================
+// LOGIN
+// ========================================
+
+// חיפוש משתמש לפי username ו-password
+const loginUser = async (username, password) => {
+
+    const user = await User.findOne({
+        username: username,
+        password: password
+    });
+
+    return user;
 };
 
-const updateUserById = async (id, updateData) => {
-  return await User.findByIdAndUpdate(id, updateData, { new: true });
+
+// ========================================
+// GET USERS - ADMIN ONLY
+// ========================================
+
+// בדיקה אם המשתמש הוא מנהל
+const getUsersForAdmin = async (username) => {
+
+    const admin = await User.findOne({
+
+        username: username,
+
+        role: "admin"
+    });
+
+
+    // אם המשתמש אינו מנהל
+    if (!admin) {
+
+        return null;
+    }
+
+
+    // שליפת המשתמשים
+    const users = await User.find(
+        {},
+        "username email role"
+    );
+
+
+    return users;
 };
 
-const deleteUserById = async (id) => {
-  return await User.findByIdAndDelete(id);
-};
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser,
-  getUserByEmail,
-  updateUserById,
-  deleteUserById
+    createUser,
+    loginUser,
+    getUsersForAdmin
 };

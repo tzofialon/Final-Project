@@ -1,44 +1,136 @@
 const productService = require('../services/productService');
 
+
+// GET PRODUCTS
 const getAllProducts = async (req, res, next) => {
-  try {
-    const products = await productService.getAllProducts();
-    res.status(200).json(products);
-  } catch (error) {
-    next(error);
-  }
-};
 
-const getProductById = async (req, res, next) => {
-  try {
-    const product = await productService.getProductById(req.params.id);
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+    try {
+
+        const category = req.query.category;
+
+        const products = await productService.getAllProducts(category);
+
+        res.json(products);
+
+    } catch (error) {
+
+        console.log("PRODUCT ERROR:", error);
+
+        res.status(500).send("Error getting products");
     }
-    res.status(200).json(product);
-  } catch (error) {
-    next(error);
-  }
+
 };
 
-const createProduct = async (req, res, next) => {
-  try {
-    const newProduct = await productService.createProduct(req.body);
-    res.status(201).json({ message: 'Product created successfully', product: newProduct });
-  } catch (error) {
-    next(error);
-  }
-};
 
-const updateInventory = async (req, res, next) => {
-  try {
-    const updatedProduct = await productService.updateInventory(req.params.id, req.body.inventory);
-    if (!updatedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+// UPDATE PRODUCT
+const updateProduct = async (req, res, next) => {
+
+    try {
+
+        const productId = Number(req.params.productId);
+
+        const updatedProduct = await productService.updateProduct(
+            productId,
+            req.body
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).send("Product not found");
+        }
+
+        res.json(updatedProduct);
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Error updating product");
+
     }
-    return res.status(200).json(updatedProduct);
-  } catch (error) {
-    next(error);
-  }
+
 };
 
+
+// DELETE PRODUCT
+const deleteProduct = async (req, res, next) => {
+
+    try {
+
+        const productId = Number(req.params.productId);
+
+        const deletedProduct = await productService.deleteProduct(
+            productId
+        );
+
+        if (!deletedProduct) {
+            return res.status(404).send("Product not found");
+        }
+
+        res.send("Product deleted successfully");
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Error deleting product");
+    }
+
+};
+// GET most expensive product by category
+const getMostExpensiveByCategory = async (req, res, next) => {
+
+    try {
+
+        const result =
+            await productService.getMostExpensiveByCategory();
+
+        res.json(result);
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Error getting aggregation");
+    }
+
+};
+
+
+// GET product statistics
+const getProductStats = async (req, res, next) => {
+
+    try {
+
+        const stats =
+            await productService.getProductStats();
+
+        res.json({
+            totalProducts:
+                stats.totalProducts || 0,
+
+            averagePriceAllProducts:
+                stats.averagePriceAllProducts || 0,
+
+            byCategory:
+                stats.byCategory
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send(
+            "Error getting product statistics"
+        );
+    }
+
+};
+
+
+module.exports = {
+    getAllProducts,
+    updateProduct,
+    deleteProduct,
+    getMostExpensiveByCategory,
+    getProductStats
+};

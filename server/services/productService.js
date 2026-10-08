@@ -1,43 +1,154 @@
 const Product = require('../models/Product');
 
-// פונקציית עזר פרטית לזיהוי סינון לפי ID או productId
-const getFilterById = (idParam) => {
-  const isNumber = !isNaN(Number(idParam));
-  return isNumber ? { productId: Number(idParam) } : { _id: idParam };
+
+// שליפת מוצרים מ-MongoDB
+const getAllProducts = async (category) => {
+
+    let products;
+
+    // אם נשלחה קטגוריה - מחזירים רק מוצרים מאותה קטגוריה
+    if (category) {
+
+        products = await Product.find({
+            category: category
+        });
+
+    } else {
+
+        // אם לא נשלחה קטגוריה - מחזירים את כל המוצרים
+        products = await Product.find({});
+    }
+
+    return products;
 };
 
-const getAllProducts = async () => {
-  return await Product.find();
+
+// עדכון מוצר קיים לפי productId
+const updateProduct = async (productId, updateData) => {
+
+    const updatedProduct = await Product.findOneAndUpdate(
+        { productId: productId },
+        updateData,
+        { new: true }
+    );
+
+    return updatedProduct;
 };
 
-const getProductById = async (idParam) => {
-  const filter = getFilterById(idParam);
-  return await Product.findOne(filter);
+
+// מחיקת מוצר לפי productId
+const deleteProduct = async (productId) => {
+
+    const deletedProduct = await Product.findOneAndDelete({
+        productId: productId
+    });
+
+    return deletedProduct;
 };
 
-const createProduct = async (productData) => {
-  const { productId, name, price, image, inventory } = productData;
-  return await Product.create({ productId, name, price, image, inventory });
+
+// מציאת המוצר היקר ביותר בכל קטגוריה
+const getMostExpensiveByCategory = async () => {
+
+    const result = await Product.aggregate([
+        {
+            $sort: { price: -1 }
+        },
+        {
+            $group: {
+                _id: "$category",
+                productName: { $first: "$name" },
+                price: { $first: "$price" }
+            }
+        },
+        {
+            $sort: { _id: 1 }
+        }
+    ]);
+
+    return result;
 };
 
-const updateInventory = async (idParam, inventory) => {
-  const filter = getFilterById(idParam);
-  return await Product.findOneAndUpdate(
-    filter,
-    { inventory },
-    { new: true }
-  );
+
+// שאילתת Aggregation לחישוב נתונים על המוצרים
+const getProductStats = async () => {
+
+    // חישוב מספר המוצרים והמחיר הממוצע בכל קטגוריה
+    const categoryStats = await Product.aggregate([
+
+        {
+            // קיבוץ המוצרים לפי קטגוריה
+            $group: {
+
+                _id: "$category",
+
+                // ספירת מספר המוצרים בקטגוריה
+                numberOfProducts: {
+                    $sum: 1
+                },
+
+                // חישוב המחיר הממוצע בקטגוריה
+                averagePrice: {
+                    $avg: "$price"
+                }
+            }
+        },
+
+        {
+            // מיון הקטגוריות לפי השם
+            $sort: {
+                _id: 1
+            }
+        }
+
+    ]);
+
+
+    // חישוב נתונים על כל המוצרים בחנות ביחד
+    const totalStats = await Product.aggregate([
+
+        {
+            $group: {
+
+                // null = לא מחלקים לקטגוריות,
+                // אלא מתייחסים לכל המוצרים כקבוצה אחת
+                _id: null,
+
+                // מספר המוצרים הכולל
+                totalProducts: {
+                    $sum: 1
+                },
+
+                // המחיר הממוצע של כל המוצרים
+                averagePriceAllProducts: {
+                    $avg: "$price"
+                }
+            }
+        }
+
+    ]);
+
+
+    return {
+
+        // מספר כל המוצרים
+        totalProducts:
+            totalStats[0]?.totalProducts || 0,
+
+        // ממוצע המחירים של כל המוצרים
+        averagePriceAllProducts:
+            totalStats[0]?.averagePriceAllProducts || 0,
+
+        // הנתונים שחושבו לכל קטגוריה
+        byCategory: categoryStats
+    };
 };
 
-const deleteProduct = async (idParam) => {
-  const filter = getFilterById(idParam);
-  return await Product.findOneAndDelete(filter);
-};
 
 module.exports = {
-  getAllProducts,
-  getProductById,
-  createProduct,
-  updateInventory,
-  deleteProduct
+    getAllProducts,
+    updateProduct,
+    deleteProduct,
+    getMostExpensiveByCategory,
+    getProductStats
 };

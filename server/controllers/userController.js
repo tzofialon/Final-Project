@@ -1,81 +1,129 @@
 const userService = require('../services/userService');
 
-const getAllUsers = async (req, res, next) => {
-  try {
-    const users = await userService.getAllUsers();
-    res.status(200).json(users);
-  } catch (error) {
-    next(error);
-  }
-};
 
-const getUserById = async (req, res, next) => {
-  try {
-    const user = await userService.getUserById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.status(200).json(user);
-  } catch (error) {
-    next(error);
-  }
-};
+// ========================================
+// REGISTER
+// ========================================
 
-const registerUser = async (req, res, next) => {
-  try {
-    const newUser = await userService.createUser(req.body);
-    res.status(201).json({ message: 'User registered successfully', user: newUser });
-  } catch (error) {
-    next(error);
-  }
-};
+// מקבל את פרטי ההרשמה ומעביר אותם ל-Service
+const register = async (req, res, next) => {
 
-const loginUser = async (req, res, next) => {
-  try {
-    const { email } = req.body;
-    const user = await userService.getUserByEmail(email);
+    try {
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+        // העברת פרטי המשתמש ל-Service
+        await userService.createUser(req.body);
+
+        // תשובה ל-Frontend אם ההרשמה הצליחה
+        res.send("User registered successfully");
+
+    } catch (error) {
+
+        console.log(error);
+
+        // תשובה במקרה של שגיאה
+        res.status(500).send("Error registering user");
     }
 
-    res.status(200).json({ message: 'Login successful', user });
-  } catch (error) {
-    next(error);
-  }
 };
 
-const updateUser = async (req, res, next) => {
-  try {
-    const updatedUser = await userService.updateUserById(req.params.id, req.body);
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
+
+// ========================================
+// LOGIN
+// ========================================
+
+// בדיקת פרטי ההתחברות
+const login = async (req, res, next) => {
+
+    try {
+
+        // קבלת שם המשתמש והסיסמה מה-Frontend
+        const { username, password } = req.body;
+
+
+        // חיפוש המשתמש דרך ה-Service
+        const user = await userService.loginUser(
+            username,
+            password
+        );
+
+
+        // אם לא נמצא משתמש מתאים
+        if (!user) {
+
+            return res
+                .status(401)
+                .send("Invalid username or password");
+        }
+
+
+        // אם המשתמש נמצא - מחזירים את פרטיו
+        res.json({
+
+            message: "Login successful",
+
+            username: user.username,
+
+            // מחזירים גם את התפקיד
+            role: user.role
+        });
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Error logging in");
     }
-    res.status(200).json({ message: 'User updated successfully', user: updatedUser });
-  } catch (error) {
-    next(error);
-  }
+
 };
 
-const deleteUser = async (req, res, next) => {
-  try {
-    const deletedUser = await userService.deleteUserById(req.params.id);
-    if (!deletedUser) {
-      return res.status(404).json({ message: 'User not found' });
+
+// ========================================
+// GET USERS - ADMIN ONLY
+// ========================================
+
+// מחזיר את רשימת המשתמשים רק למנהל
+const getUsersForAdmin = async (req, res, next) => {
+
+    try {
+
+        // קבלת שם המשתמש מהבקשה
+        const username = req.query.username;
+
+
+        // בדיקה דרך ה-Service שהמשתמש הוא admin
+        const users = await userService.getUsersForAdmin(
+            username
+        );
+
+
+        // אם המשתמש אינו מנהל - אין גישה
+        if (!users) {
+
+            return res
+                .status(403)
+                .send("Access denied");
+        }
+
+
+        // החזרת רשימת המשתמשים ל-Frontend
+        res.json(users);
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send(
+            "Error getting users"
+        );
     }
-    res.status(200).json({ message: 'User deleted successfully' });
-  } catch (error) {
-    next(error);
-  }
+
 };
+
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  registerUser,
-  loginUser,
-  updateUser,
-  deleteUser
+    register,
+    login,
+    getUsersForAdmin
 };
-
-

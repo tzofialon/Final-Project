@@ -1,20 +1,30 @@
 const express = require('express');
 const router = express.Router();
+
 const productController = require('../controllers/productController');
 
-// GET - שליפת כל המוצרים בקטלוג
+
+// GET all products
 router.get('/', productController.getAllProducts);
 
-// GET - שליפת מוצר בודד לפי ID
-router.get('/:id', productController.getProductById);
 
-// POST - הוספת מוצר חדש לקטלוג
-router.post('/', productController.createProduct);
+// UPDATE product
+router.put('/:productId', productController.updateProduct);
 
-// PUT - עדכון מלאי מוצר לאחר רכישה
-router.put('/:id/inventory', productController.updateInventory);
 
-// DELETE - מחיקת מוצר מהקטלוג
-router.delete('/:id', productController.deleteProduct);
+// DELETE product
+router.delete('/:productId', productController.deleteProduct);
+
+
+router.get(
+    '/most-expensive-by-category',
+    productController.getMostExpensiveByCategory
+);
+
+router.get(
+    '/stats',
+    productController.getProductStats
+);
+
 
 module.exports = router;
