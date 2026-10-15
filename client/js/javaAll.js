@@ -1288,25 +1288,43 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        const username =
-            localStorage.getItem(
-                "username"
-            ) || "Guest";
-
-
-        const welcomeUserElement =
-            document.getElementById(
-                "welcome-user"
-            );
-
-
-        if (welcomeUserElement) {
-
-            welcomeUserElement.textContent =
-                `Hello, ${username}`;
-        }
+        updateHeaderAuthState();
     }
 );
+
+
+function updateHeaderAuthState() {
+
+    const guestUser =
+        isGuestUser();
+
+    const username =
+        guestUser
+            ? "Guest"
+            : localStorage.getItem("username");
+
+    const welcomeUserElement =
+        document.getElementById("welcome-user");
+
+    if (welcomeUserElement) {
+        welcomeUserElement.textContent =
+            `Hello, ${username}`;
+    }
+
+    document.querySelectorAll(
+        ".login-link, .category-login"
+    ).forEach(function (loginButton) {
+        loginButton.style.display =
+            guestUser ? "inline-flex" : "none";
+    });
+
+    document.querySelectorAll(
+        ".logout-button, .category-logout"
+    ).forEach(function (logoutButton) {
+        logoutButton.style.display =
+            guestUser ? "none" : "inline-flex";
+    });
+}
 
 
 // ======================================================
@@ -1550,18 +1568,7 @@ function logout() {
         "role"
     );
 
-
-    const welcomeUserElement =
-        document.getElementById(
-            "welcome-user"
-        );
-
-
-    if (welcomeUserElement) {
-
-        welcomeUserElement.textContent =
-            "Hello, Guest";
-    }
+    updateHeaderAuthState();
 }
 // ======================================================
 // MONGODB PRODUCTS

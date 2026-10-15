@@ -1876,7 +1876,10 @@ body.home-page .footer-inner small {
         gap: 8px;
     }
 
-    body.home-page .welcome-user,
+    body.home-page .welcome-user {
+        display: block;
+    }
+
     body.home-page .logout-button {
         display: none;
     }
@@ -3566,6 +3569,20 @@ body.home-page .brand-period {
     color: #078b83;
 }
 
+body.home-page .login-link,
+body.home-page .logout-button,
+body.home-page .cart-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    min-height: 38px;
+    padding: 0 11px;
+    border: 1px solid rgba(151, 198, 191, 0.72);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.76);
+}
+
 body.home-page .primary-nav a,
 body.home-page .login-link {
     color: #3d5b61;
@@ -3587,6 +3604,7 @@ body.home-page .cart-link {
 
 body.home-page .logout-button:hover,
 body.home-page .admin-button:hover,
+body.home-page .login-link:hover,
 body.home-page .cart-link:hover {
     border-color: #55c4b6;
     background: #f3fffc;

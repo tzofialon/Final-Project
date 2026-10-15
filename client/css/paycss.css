@@ -1738,7 +1738,7 @@ body.auth-page .auth-assurance span {
         }
 
         body.category-page .category-welcome {
-            display: none;
+            display: block;
         }
 
         body.category-page .category-logout,
@@ -2861,7 +2861,13 @@ body.category-page .category-nav a.is-current::after {
 body.category-page header.category-header .category-logout,
 body.category-page header.category-header .category-login,
 body.category-page header.category-header .category-cart {
-    border-color: rgba(154, 199, 192, 0.75);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    min-height: 36px;
+    padding: 0 10px;
+    border: 1px solid rgba(154, 199, 192, 0.75);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.72);
     transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
